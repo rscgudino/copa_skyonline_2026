@@ -20,6 +20,7 @@
     --gold:#f2b705;
     --red:#ef4444;
     --blue:#3b82f6;
+    --orange:#f59e0b;
   }
   *{box-sizing:border-box;}
   body{
@@ -63,7 +64,13 @@
   
   .status-online { color: var(--green); }
   .status-offline { color: var(--red); }
-  .status-checking { color: var(--gold); }
+  .status-checking { color: var(--orange); }
+  .status-fallback { color: var(--blue); }
+  
+  .api-badge { transition: all 0.3s ease; }
+  .api-badge.active { background: rgba(22,217,122,0.15); color: var(--green); border-color: rgba(22,217,122,0.3); }
+  .api-badge.fallback { background: rgba(59,130,246,0.15); color: var(--blue); border-color: rgba(59,130,246,0.3); }
+  .api-badge.error { background: rgba(239,68,68,0.15); color: var(--red); border-color: rgba(239,68,68,0.3); }
 </style>
 </head>
 <body>
@@ -74,13 +81,15 @@
   <header class="mb-7 lg:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
     <div>
       <p class="font-display tracking-[0.25em] text-[11px] uppercase text-[var(--green)] mb-1">Fase de Grupos · Copa Mundial FIFA 2026™</p>
-      <h1 class="font-display text-4xl sm:text-5xl font-semibold uppercase tracking-tight">Copa Mundial-2026-<span class="text-[var(--text-dim)]">entre amigos</span></h1>
+      <h1 class="font-display text-4xl sm:text-5xl font-semibold uppercase tracking-tight">Copa Mundial-2026-<span class="text-[var(--text-dim)]">Skyonline</span></h1>
     </div>
-    <div class="flex items-center gap-2 surface rounded-full px-4 py-2 self-start sm:self-auto">
-      <span class="w-2 h-2 rounded-full bg-[var(--green)] pulse-dot" id="statusDot"></span>
-      <span class="text-xs text-[var(--text-dim)]">Actualizado al <span id="fechaActualizacion" class="text-[var(--text)] font-medium">--</span></span>
-      <span class="text-[10px] text-[var(--green)] bg-[var(--green)]/10 px-2 py-0.5 rounded-full font-semibold">LIVE</span>
-      <span id="apiStatus" class="text-[10px] px-2 py-0.5 rounded-full bg-[var(--surface-2)] text-[var(--text-dim)]">API: Conectando...</span>
+    <div class="flex flex-wrap items-center gap-2">
+      <div class="flex items-center gap-2 surface rounded-full px-4 py-2">
+        <span class="w-2 h-2 rounded-full bg-[var(--green)] pulse-dot" id="statusDot"></span>
+        <span class="text-xs text-[var(--text-dim)]">Actualizado al <span id="fechaActualizacion" class="text-[var(--text)] font-medium">--</span></span>
+        <span class="text-[10px] text-[var(--green)] bg-[var(--green)]/10 px-2 py-0.5 rounded-full font-semibold">LIVE</span>
+      </div>
+      <span id="apiStatus" class="text-[10px] px-2 py-0.5 rounded-full bg-[var(--surface-2)] text-[var(--text-dim)] api-badge">API: Conectando...</span>
     </div>
   </header>
 
@@ -189,13 +198,17 @@
         <div class="mt-4 pt-4 border-t border-[var(--border)]">
           <div class="flex items-center justify-between">
             <p class="text-[10px] text-[var(--text-dim)] uppercase tracking-wide flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-[var(--green)] animate-pulse"></span>
+              <span class="w-2 h-2 rounded-full bg-[var(--green)] animate-pulse" id="updateDot"></span>
               Actualización automática
             </p>
             <span id="ultimaActualizacionAPI" class="text-[9px] text-[var(--text-dim)]"></span>
           </div>
+          <div class="mt-1 flex flex-wrap gap-1">
+            <span id="apiProvider" class="text-[8px] text-[var(--text-dim)] bg-[var(--surface-2)] px-2 py-0.5 rounded-full">API: --</span>
+            <span id="apiAttempts" class="text-[8px] text-[var(--text-dim)] bg-[var(--surface-2)] px-2 py-0.5 rounded-full">Intentos: 0</span>
+          </div>
           <button onclick="forzarActualizacionCompleta()" class="mt-2 w-full text-[10px] text-[var(--text-dim)] hover:text-[var(--text)] transition-colors uppercase tracking-wider">
-            🔄 Forzar actualización desde API
+            🔄 Forzar actualización
           </button>
         </div>
       </section>
@@ -206,7 +219,7 @@
   <footer class="text-center text-[11px] text-[var(--text-dim)] mt-10 pb-4">
     PRODE armado entre amigos para la Fase de Grupos · Copa Mundial FIFA 2026™. No afiliado a la FIFA.
     <br>
-    <span class="text-[10px] opacity-50">⚡ Datos en vivo vía worldcup26.ir · Los pronósticos son fijos</span>
+    <span class="text-[10px] opacity-50">⚡ Failover automático con 6 APIs gratuitas · Los pronósticos son fijos</span>
   </footer>
 </div>
 
@@ -232,10 +245,9 @@
 
 <script>
 /* ============================================================
-   DATOS: PRONÓSTICOS DE PARTICIPANTES (TODOS LOS PARTIDOS)
+   DATOS: PRONÓSTICOS DE PARTICIPANTES - TANDA 1
    ============================================================ */
 
-// TANDA 1
 const participantesTanda1 = [
   {
     nombre: "Alex Moyano",
@@ -272,7 +284,7 @@ const participantesTanda1 = [
     }
   },
   {
-    nombre: "Cosmo",
+    nombre: "Rosero",
     pronosticos: {
       "A1":{golesL:2,golesV:1},"A2":{golesL:1,golesV:0},"A3":{golesL:0,golesV:1},"A4":{golesL:1,golesV:2},"A5":{golesL:0,golesV:2},"A6":{golesL:0,golesV:1},
       "B1":{golesL:2,golesV:1},"B2":{golesL:2,golesV:1},"B3":{golesL:0,golesV:1},"B4":{golesL:2,golesV:1},"B5":{golesL:2,golesV:1},"B6":{golesL:1,golesV:1},
@@ -341,7 +353,10 @@ const participantesTanda1 = [
   }
 ];
 
-// TANDA 2
+/* ============================================================
+   DATOS: PRONÓSTICOS - TANDA 2
+   ============================================================ */
+
 const participantesTanda2 = [
   {
     nombre: "Goyechea",
@@ -378,7 +393,7 @@ const participantesTanda2 = [
     }
   },
   {
-    nombre: "Juan Pérez",
+    nombre: "Juan P.",
     pronosticos: {
       "A1":{golesL:2,golesV:1},"A2":{golesL:0,golesV:2},"A3":{golesL:2,golesV:2},"A4":{golesL:2,golesV:2},"A5":{golesL:1,golesV:2},"A6":{golesL:2,golesV:1},
       "B1":{golesL:1,golesV:3},"B2":{golesL:1,golesV:2},"B3":{golesL:3,golesV:1},"B4":{golesL:0,golesV:1},"B5":{golesL:3,golesV:1},"B6":{golesL:0,golesV:2},
@@ -395,7 +410,7 @@ const participantesTanda2 = [
     }
   },
   {
-    nombre: "Krikor",
+    nombre: "Kuikue",
     pronosticos: {
       "A1":{golesL:1,golesV:0},"A2":{golesL:1,golesV:0},"A3":{golesL:0,golesV:1},"A4":{golesL:1,golesV:1},"A5":{golesL:1,golesV:0},"A6":{golesL:2,golesV:2},
       "B1":{golesL:1,golesV:0},"B2":{golesL:0,golesV:2},"B3":{golesL:1,golesV:0},"B4":{golesL:1,golesV:0},"B5":{golesL:1,golesV:0},"B6":{golesL:1,golesV:2},
@@ -429,7 +444,7 @@ const participantesTanda2 = [
     }
   },
   {
-    nombre: "Lucas Maseio",
+    nombre: "Lucas M.",
     pronosticos: {
       "A1":{golesL:3,golesV:1},"A2":{golesL:1,golesV:1},"A3":{golesL:1,golesV:2},"A4":{golesL:2,golesV:1},"A5":{golesL:2,golesV:2},"A6":{golesL:3,golesV:1},
       "B1":{golesL:1,golesV:1},"B2":{golesL:0,golesV:2},"B3":{golesL:2,golesV:0},"B4":{golesL:2,golesV:0},"B5":{golesL:1,golesV:1},"B6":{golesL:3,golesV:0},
@@ -447,7 +462,10 @@ const participantesTanda2 = [
   }
 ];
 
-// TANDA 3
+/* ============================================================
+   DATOS: PRONÓSTICOS - TANDA 3
+   ============================================================ */
+
 const participantesTanda3 = [
   {
     nombre: "Lucas Racing",
@@ -557,12 +575,9 @@ const participantesTanda3 = [
 const participantes = [...participantesTanda1, ...participantesTanda2, ...participantesTanda3];
 
 /* ============================================================
-   DATOS: RESULTADOS INICIALES (TODOS LOS PARTIDOS - 72 PARTIDOS)
+   GENERAR TODOS LOS PARTIDOS (A1-L6)
    ============================================================ */
 
-const resultadosIniciales = {};
-
-// Generar todos los partidos (A1-L6)
 const grupos = ['A','B','C','D','E','F','G','H','I','J','K','L'];
 const equiposPorGrupo = {
   'A': ['México', 'Sudáfrica', 'Corea del Sur', 'Rep. Checa'],
@@ -579,7 +594,6 @@ const equiposPorGrupo = {
   'L': ['Inglaterra', 'Croacia', 'Ghana', 'Panamá']
 };
 
-// Partidos de cada grupo (formato round-robin)
 const partidosPorGrupo = {
   'A': [['México','Sudáfrica'],['Corea del Sur','Rep. Checa'],['Rep. Checa','Sudáfrica'],['México','Corea del Sur'],['Rep. Checa','México'],['Sudáfrica','Corea del Sur']],
   'B': [['Canadá','Bosnia'],['Catar','Suiza'],['Suiza','Bosnia'],['Canadá','Catar'],['Suiza','Canadá'],['Bosnia','Catar']],
@@ -595,25 +609,69 @@ const partidosPorGrupo = {
   'L': [['Inglaterra','Croacia'],['Ghana','Panamá'],['Inglaterra','Ghana'],['Croacia','Panamá'],['Panamá','Inglaterra'],['Croacia','Ghana']]
 };
 
-// Construir resultadosIniciales
+// Construir resultados iniciales
+const resultadosIniciales = {};
 grupos.forEach(g => {
   const partidos = partidosPorGrupo[g];
   partidos.forEach(([local, visitante], idx) => {
     const id = `${g}${idx + 1}`;
-    resultadosIniciales[id] = {
-      local: local,
-      visitante: visitante,
-      golesL: null,
-      golesV: null,
-      jugado: false
-    };
+    resultadosIniciales[id] = { local, visitante, golesL: null, golesV: null, jugado: false };
   });
 });
 
 /* ============================================================
-   SISTEMA DE ACTUALIZACIÓN
+   SISTEMA DE FAILOVER CON MÚLTIPLES APIS
    ============================================================ */
 
+const APIS_CONFIG = [
+  {
+    id: 'worldcup26',
+    name: 'WorldCup26',
+    url: 'https://worldcup26.ir/get/games',
+    timeout: 8000,
+    parser: 'worldcup26'
+  },
+  {
+    id: 'worldcup26_backup',
+    name: 'WorldCup26 (Backup)',
+    url: 'https://worldcup26.ir/api/games',
+    timeout: 8000,
+    parser: 'worldcup26'
+  },
+  {
+    id: 'espn',
+    name: 'ESPN',
+    url: 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.worldcup/scoreboard',
+    timeout: 10000,
+    parser: 'espn'
+  },
+  {
+    id: 'thesportsdb',
+    name: 'TheSportsDB',
+    url: 'https://www.thesportsdb.com/api/v1/json/3/eventsround.php?id=4480&r=1',
+    timeout: 10000,
+    parser: 'thesportsdb'
+  },
+  {
+    id: 'football_data',
+    name: 'Football-Data.org',
+    url: 'https://api.football-data.org/v4/competitions/WC/matches',
+    timeout: 10000,
+    parser: 'football_data',
+    headers: { 'X-Auth-Token': 'demo' }
+  },
+  {
+    id: 'livescore_mcp',
+    name: 'LiveScore MCP',
+    url: 'https://livescoremcp.com/sse',
+    timeout: 5000,
+    parser: 'livescore'
+  }
+];
+
+let apiActualIndex = 0;
+let intentosTotales = 0;
+let apiActual = null;
 let resultadosActuales = JSON.parse(JSON.stringify(resultadosIniciales));
 const puntajesCache = new Map();
 let actualizando = false;
@@ -621,14 +679,237 @@ const GRUPOS_LISTA = ['A','B','C','D','E','F','G','H','I','J','K','L'];
 const MEDALLAS_LISTA = ['🥇','🥈','🥉'];
 let tablaOrdenada = [];
 let ultimaActualizacionAPI = null;
-let estadoAPI = 'checking';
 
-// === CONFIGURACIÓN API ===
-const API_CONFIG = {
-  url: 'https://worldcup26.ir/get/games',
-  timeout: 10000,
-  intervalo: 60000
-};
+// === PARSERS PARA CADA API ===
+function parsearDatosAPI(datos, parserType) {
+  const actualizaciones = {};
+  
+  try {
+    let partidos = [];
+    
+    switch(parserType) {
+      case 'worldcup26':
+        partidos = datos.games || datos.matches || datos.data || [];
+        if (!Array.isArray(partidos)) partidos = [];
+        
+        partidos.forEach(partido => {
+          let id = partido.id || partido.matchId || partido.gameId;
+          let local = partido.homeTeam?.name || partido.home_team?.name || partido.team1;
+          let visitante = partido.awayTeam?.name || partido.away_team?.name || partido.team2;
+          let golesL = partido.score?.fullTime?.home ?? partido.homeScore ?? partido.goalsHome;
+          let golesV = partido.score?.fullTime?.away ?? partido.awayScore ?? partido.goalsAway;
+          let estado = partido.status || partido.matchStatus || '';
+          
+          if (id && local && visitante && golesL !== undefined && golesV !== undefined) {
+            const jugado = ['FINISHED','FINAL','FT','COMPLETED','PLAYED','played'].includes(estado) || 
+                           (estado === '' && golesL !== null && golesV !== null);
+            if (jugado) {
+              for (const [key, value] of Object.entries(resultadosActuales)) {
+                if (value.local === local && value.visitante === visitante) {
+                  actualizaciones[key] = { local, visitante, golesL, golesV, jugado: true };
+                  break;
+                }
+              }
+            }
+          }
+        });
+        break;
+        
+      case 'espn':
+        if (datos.events) {
+          datos.events.forEach(event => {
+            let local = event.competitions?.[0]?.competitors?.[0]?.team?.displayName;
+            let visitante = event.competitions?.[0]?.competitors?.[1]?.team?.displayName;
+            let golesL = event.competitions?.[0]?.competitors?.[0]?.score;
+            let golesV = event.competitions?.[0]?.competitors?.[1]?.score;
+            let estado = event.status?.type?.description || '';
+            
+            if (local && visitante && golesL !== undefined && golesV !== undefined) {
+              const jugado = ['Final','Final','FT'].includes(estado) || 
+                             (golesL !== null && golesV !== null && estado !== 'Scheduled');
+              if (jugado) {
+                for (const [key, value] of Object.entries(resultadosActuales)) {
+                  if (value.local === local && value.visitante === visitante) {
+                    actualizaciones[key] = { local, visitante, golesL: parseInt(golesL), golesV: parseInt(golesV), jugado: true };
+                    break;
+                  }
+                }
+              }
+            }
+          });
+        }
+        break;
+        
+      case 'thesportsdb':
+        if (datos.events) {
+          datos.events.forEach(event => {
+            let local = event.strHomeTeam;
+            let visitante = event.strAwayTeam;
+            let golesL = parseInt(event.intHomeScore);
+            let golesV = parseInt(event.intAwayScore);
+            let estado = event.strStatus || '';
+            
+            if (local && visitante && !isNaN(golesL) && !isNaN(golesV)) {
+              const jugado = estado === 'FT' || estado === 'Finished' || (golesL >= 0 && golesV >= 0);
+              if (jugado) {
+                for (const [key, value] of Object.entries(resultadosActuales)) {
+                  if (value.local === local && value.visitante === visitante) {
+                    actualizaciones[key] = { local, visitante, golesL, golesV, jugado: true };
+                    break;
+                  }
+                }
+              }
+            }
+          });
+        }
+        break;
+        
+      case 'football_data':
+        if (datos.matches) {
+          datos.matches.forEach(match => {
+            let local = match.homeTeam?.name;
+            let visitante = match.awayTeam?.name;
+            let golesL = match.score?.fullTime?.home ?? match.score?.halfTime?.home;
+            let golesV = match.score?.fullTime?.away ?? match.score?.halfTime?.away;
+            let estado = match.status || '';
+            
+            if (local && visitante && golesL !== undefined && golesV !== undefined) {
+              const jugado = estado === 'FINISHED' || estado === 'FT';
+              if (jugado) {
+                for (const [key, value] of Object.entries(resultadosActuales)) {
+                  if (value.local === local && value.visitante === visitante) {
+                    actualizaciones[key] = { local, visitante, golesL, golesV, jugado: true };
+                    break;
+                  }
+                }
+              }
+            }
+          });
+        }
+        break;
+        
+      case 'livescore':
+        if (datos.data && datos.data.matches) {
+          datos.data.matches.forEach(match => {
+            let local = match.homeTeam?.name;
+            let visitante = match.awayTeam?.name;
+            let golesL = match.homeScore;
+            let golesV = match.awayScore;
+            
+            if (local && visitante && golesL !== undefined && golesV !== undefined) {
+              for (const [key, value] of Object.entries(resultadosActuales)) {
+                if (value.local === local && value.visitante === visitante) {
+                  actualizaciones[key] = { local, visitante, golesL, golesV, jugado: true };
+                  break;
+                }
+              }
+            }
+          });
+        }
+        break;
+    }
+  } catch (e) {
+    console.error('Error parseando datos:', e);
+  }
+  
+  return actualizaciones;
+}
+
+// === FUNCIÓN PRINCIPAL CON FAILOVER ===
+async function obtenerResultadosConFailover() {
+  const statusEl = document.getElementById('apiStatus');
+  const providerEl = document.getElementById('apiProvider');
+  const attemptsEl = document.getElementById('apiAttempts');
+  const dotEl = document.getElementById('statusDot');
+  const updateDot = document.getElementById('updateDot');
+  
+  intentosTotales++;
+  let apiIndex = apiActualIndex;
+  let intentosEnEstaRonda = 0;
+  const maxIntentos = APIS_CONFIG.length;
+  
+  statusEl.className = 'text-[10px] px-2 py-0.5 rounded-full bg-[var(--orange)]/20 text-[var(--orange)] api-badge';
+  statusEl.textContent = '🔄 Buscando API...';
+  dotEl.className = 'w-2 h-2 rounded-full bg-[var(--orange)] pulse-dot';
+  updateDot.className = 'w-2 h-2 rounded-full bg-[var(--orange)] animate-pulse';
+  attemptsEl.textContent = `Intentos: ${intentosTotales}`;
+  
+  while (intentosEnEstaRonda < maxIntentos) {
+    const api = APIS_CONFIG[apiIndex];
+    apiActual = api;
+    providerEl.textContent = `API: ${api.name}`;
+    statusEl.textContent = `🔄 Intentando ${api.name}...`;
+    
+    console.log(`📡 Intentando API ${apiIndex + 1}/${maxIntentos}: ${api.name}`);
+    
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), api.timeout);
+      
+      const options = {
+        method: 'GET',
+        headers: { 
+          'Accept': 'application/json',
+          ...(api.headers || {})
+        },
+        signal: controller.signal
+      };
+      
+      const respuesta = await fetch(api.url, options);
+      clearTimeout(timeoutId);
+      
+      if (!respuesta.ok) {
+        throw new Error(`HTTP ${respuesta.status}`);
+      }
+      
+      const datos = await respuesta.json();
+      const actualizaciones = parsearDatosAPI(datos, api.parser);
+      
+      if (Object.keys(actualizaciones).length > 0) {
+        actualizarResultados(actualizaciones);
+        ultimaActualizacionAPI = new Date();
+        document.getElementById('ultimaActualizacionAPI').textContent = 
+          `Última: ${ultimaActualizacionAPI.toLocaleTimeString()}`;
+        
+        statusEl.className = 'text-[10px] px-2 py-0.5 rounded-full bg-[var(--green)]/20 text-[var(--green)] api-badge active';
+        statusEl.textContent = `✅ ${api.name}`;
+        dotEl.className = 'w-2 h-2 rounded-full bg-[var(--green)] pulse-dot';
+        updateDot.className = 'w-2 h-2 rounded-full bg-[var(--green)] animate-pulse';
+        providerEl.textContent = `API: ${api.name} ✓`;
+        
+        console.log(`✅ API ${api.name} funcionando correctamente`);
+        apiActualIndex = apiIndex;
+        return true;
+      } else {
+        console.warn(`⚠️ API ${api.name} respondió pero sin partidos`);
+        apiIndex = (apiIndex + 1) % maxIntentos;
+        intentosEnEstaRonda++;
+      }
+      
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        console.warn(`⏰ Timeout en ${api.name}`);
+      } else {
+        console.warn(`❌ Error en ${api.name}:`, error.message);
+      }
+      
+      statusEl.className = 'text-[10px] px-2 py-0.5 rounded-full bg-[var(--red)]/20 text-[var(--red)] api-badge error';
+      statusEl.textContent = `❌ ${api.name}`;
+      
+      apiIndex = (apiIndex + 1) % maxIntentos;
+      intentosEnEstaRonda++;
+    }
+  }
+  
+  statusEl.className = 'text-[10px] px-2 py-0.5 rounded-full bg-[var(--red)]/20 text-[var(--red)] api-badge error';
+  statusEl.textContent = '⚠️ Sin conexión';
+  dotEl.className = 'w-2 h-2 rounded-full bg-[var(--red)]';
+  updateDot.className = 'w-2 h-2 rounded-full bg-[var(--red)]';
+  providerEl.textContent = 'API: Sin conexión';
+  
+  console.warn('⚠️ Todas las APIs fallaron');
+  return false;
+}
 
 // === FUNCIONES DE PUNTUACIÓN ===
 function calcularPuntaje(partidoId, pred, real) {
@@ -789,79 +1070,6 @@ function actualizarResultados(nuevosResultados) {
   }
 }
 
-// === OBTENER RESULTADOS DESDE API ===
-async function obtenerResultadosDesdeAPI() {
-  try {
-    estadoAPI = 'checking';
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.timeout);
-    
-    const respuesta = await fetch(API_CONFIG.url, {
-      method: 'GET',
-      headers: { 'Accept': 'application/json' },
-      signal: controller.signal
-    });
-    
-    clearTimeout(timeoutId);
-    if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
-    
-    const datos = await respuesta.json();
-    console.log('📡 Datos recibidos de API:', datos);
-    
-    // Procesar datos...
-    const actualizaciones = procesarDatosAPI(datos);
-    if (Object.keys(actualizaciones).length > 0) {
-      actualizarResultados(actualizaciones);
-      ultimaActualizacionAPI = new Date();
-      document.getElementById('ultimaActualizacionAPI').textContent = `Última API: ${ultimaActualizacionAPI.toLocaleTimeString()}`;
-      estadoAPI = 'online';
-    }
-  } catch (error) {
-    console.error('❌ Error API:', error);
-    estadoAPI = 'offline';
-  }
-}
-
-function procesarDatosAPI(datos) {
-  const actualizaciones = {};
-  try {
-    let partidos = datos.games || datos.matches || datos.data || [];
-    if (!Array.isArray(partidos)) partidos = [];
-    
-    partidos.forEach(partido => {
-      let id = partido.id || partido.matchId || partido.gameId;
-      let local = partido.homeTeam?.name || partido.home_team?.name || partido.team1;
-      let visitante = partido.awayTeam?.name || partido.away_team?.name || partido.team2;
-      let golesL = partido.score?.fullTime?.home ?? partido.homeScore ?? partido.goalsHome;
-      let golesV = partido.score?.fullTime?.away ?? partido.awayScore ?? partido.goalsAway;
-      let estado = partido.status || partido.matchStatus || '';
-      
-      if (id && local && visitante && golesL !== undefined && golesV !== undefined) {
-        const jugado = ['FINISHED','FINAL','FT','COMPLETED','PLAYED'].includes(estado) || 
-                       (estado === '' && golesL !== null && golesV !== null);
-        
-        if (jugado) {
-          const matchId = id.toString().toUpperCase();
-          for (const [key, value] of Object.entries(resultadosActuales)) {
-            if (value.local === local && value.visitante === visitante) {
-              actualizaciones[key] = { local, visitante, golesL, golesV, jugado: true };
-              break;
-            }
-          }
-        }
-      }
-    });
-  } catch (e) {
-    console.error('Error procesando API:', e);
-  }
-  return actualizaciones;
-}
-
-function forzarActualizacionCompleta() {
-  console.log('🔄 Forzando actualización...');
-  obtenerResultadosDesdeAPI();
-}
-
 // === MODAL ===
 function abrirModal(idx) {
   try {
@@ -928,9 +1136,22 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') cerrarModal();
 });
 
+// === FORZAR ACTUALIZACIÓN ===
+function forzarActualizacionCompleta() {
+  console.log('🔄 Forzando actualización con failover...');
+  obtenerResultadosConFailover();
+}
+
 // === INICIALIZACIÓN ===
 function iniciarApp() {
-  console.log('🚀 Iniciando aplicación con 72 partidos');
+  console.log('🚀 Iniciando aplicación con failover automático');
+  console.log(`📡 ${APIS_CONFIG.length} APIs configuradas`);
+  console.log(`👥 ${participantes.length} participantes`);
+  
+  APIS_CONFIG.forEach((api, i) => {
+    console.log(`   ${i+1}. ${api.name} (${api.url})`);
+  });
+  
   actualizarRanking();
   actualizarPartidos();
   
@@ -938,9 +1159,17 @@ function iniciarApp() {
   document.getElementById('fechaActualizacion').textContent = 
     ahora.toLocaleDateString('es-AR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
   
-  setTimeout(() => obtenerResultadosDesdeAPI(), 2000);
-  setInterval(obtenerResultadosDesdeAPI, API_CONFIG.intervalo);
-  console.log('✅ Aplicación iniciada con todos los partidos (A1-L6)');
+  setTimeout(() => {
+    console.log('📡 Conectando a APIs con failover...');
+    obtenerResultadosConFailover();
+  }, 2000);
+  
+  setInterval(() => {
+    console.log('🔄 Actualización automática programada');
+    obtenerResultadosConFailover();
+  }, 45000);
+  
+  console.log('✅ Aplicación iniciada correctamente');
 }
 
 document.addEventListener('DOMContentLoaded', iniciarApp);
