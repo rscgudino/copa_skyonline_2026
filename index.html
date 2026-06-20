@@ -232,335 +232,408 @@
 
 <script>
 /* ============================================================
-   DATOS: PRONÓSTICOS DE PARTICIPANTES (INMUTABLES)
+   DATOS: PRONÓSTICOS DE PARTICIPANTES (TODOS LOS PARTIDOS)
    ============================================================ */
 
-const participantes = [
-  // TANDA 1
-  { nombre:"Alex Moyano", pronosticos:{ "A1":{golesL:2,golesV:0}, "A2":{golesL:1,golesV:0}, "A3":{golesL:1,golesV:0}, "A4":{golesL:1,golesV:2}, "B1":{golesL:1,golesV:0}, "B2":{golesL:0,golesV:2}, "B3":{golesL:2,golesV:1}, "B4":{golesL:1,golesV:0}, "C1":{golesL:2,golesV:1}, "C2":{golesL:0,golesV:1}, "C3":{golesL:3,golesV:0}, "C4":{golesL:1,golesV:2}, "D1":{golesL:1,golesV:1}, "D2":{golesL:0,golesV:1}, "D3":{golesL:2,golesV:1}, "D4":{golesL:0,golesV:1}, "E1":{golesL:3,golesV:0}, "E2":{golesL:0,golesV:2}, "F1":{golesL:2,golesV:1}, "F2":{golesL:2,golesV:0}, "G1":{golesL:3,golesV:1}, "G2":{golesL:1,golesV:1}, "H1":{golesL:5,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:3,golesV:1}, "I2":{golesL:0,golesV:2}, "J1":{golesL:1,golesV:0}, "J2":{golesL:2,golesV:1}, "K1":{golesL:4,golesV:0}, "K2":{golesL:0,golesV:3}, "L1":{golesL:2,golesV:2}, "L2":{golesL:2,golesV:0} } },
-  { nombre:"Alex C.", pronosticos:{ "A1":{golesL:1,golesV:1}, "A2":{golesL:2,golesV:2}, "A3":{golesL:1,golesV:2}, "A4":{golesL:1,golesV:2}, "B1":{golesL:0,golesV:2}, "B2":{golesL:0,golesV:2}, "B3":{golesL:1,golesV:0}, "B4":{golesL:1,golesV:1}, "C1":{golesL:1,golesV:2}, "C2":{golesL:0,golesV:2}, "C3":{golesL:2,golesV:0}, "C4":{golesL:2,golesV:2}, "D1":{golesL:0,golesV:2}, "D2":{golesL:0,golesV:2}, "D3":{golesL:2,golesV:0}, "D4":{golesL:2,golesV:1}, "E1":{golesL:3,golesV:0}, "E2":{golesL:1,golesV:1}, "F1":{golesL:2,golesV:3}, "F2":{golesL:2,golesV:1}, "G1":{golesL:3,golesV:1}, "G2":{golesL:1,golesV:1}, "H1":{golesL:4,golesV:0}, "H2":{golesL:1,golesV:1}, "I1":{golesL:3,golesV:1}, "I2":{golesL:0,golesV:3}, "J1":{golesL:2,golesV:0}, "J2":{golesL:2,golesV:1}, "K1":{golesL:2,golesV:0}, "K2":{golesL:0,golesV:2}, "L1":{golesL:3,golesV:1}, "L2":{golesL:2,golesV:0} } },
-  { nombre:"Cosmo", pronosticos:{ "A1":{golesL:2,golesV:1}, "A2":{golesL:1,golesV:0}, "A3":{golesL:0,golesV:1}, "A4":{golesL:1,golesV:2}, "B1":{golesL:2,golesV:1}, "B2":{golesL:2,golesV:1}, "B3":{golesL:0,golesV:1}, "B4":{golesL:2,golesV:1}, "C1":{golesL:1,golesV:1}, "C2":{golesL:0,golesV:2}, "C3":{golesL:2,golesV:0}, "C4":{golesL:1,golesV:2}, "D1":{golesL:0,golesV:1}, "D2":{golesL:2,golesV:1}, "D3":{golesL:2,golesV:2}, "D4":{golesL:0,golesV:2}, "E1":{golesL:3,golesV:0}, "E2":{golesL:0,golesV:2}, "F1":{golesL:1,golesV:2}, "F2":{golesL:2,golesV:0}, "G1":{golesL:1,golesV:2}, "G2":{golesL:1,golesV:2}, "H1":{golesL:2,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:1}, "I2":{golesL:1,golesV:0}, "J1":{golesL:2,golesV:0}, "J2":{golesL:2,golesV:0}, "K1":{golesL:2,golesV:1}, "K2":{golesL:2,golesV:0}, "L1":{golesL:1,golesV:1}, "L2":{golesL:0,golesV:1} } },
-  { nombre:"Diego Castiñeiras", pronosticos:{ "A1":{golesL:2,golesV:0}, "A2":{golesL:2,golesV:2}, "A3":{golesL:1,golesV:0}, "A4":{golesL:1,golesV:1}, "B1":{golesL:1,golesV:1}, "B2":{golesL:0,golesV:2}, "B3":{golesL:1,golesV:0}, "B4":{golesL:2,golesV:1}, "C1":{golesL:2,golesV:2}, "C2":{golesL:0,golesV:2}, "C3":{golesL:5,golesV:0}, "C4":{golesL:1,golesV:2}, "D1":{golesL:1,golesV:1}, "D2":{golesL:0,golesV:2}, "D3":{golesL:3,golesV:2}, "D4":{golesL:1,golesV:0}, "E1":{golesL:1,golesV:0}, "E2":{golesL:1,golesV:2}, "F1":{golesL:1,golesV:3}, "F2":{golesL:4,golesV:2}, "G1":{golesL:2,golesV:1}, "G2":{golesL:1,golesV:0}, "H1":{golesL:4,golesV:0}, "H2":{golesL:1,golesV:1}, "I1":{golesL:4,golesV:2}, "I2":{golesL:0,golesV:2}, "J1":{golesL:2,golesV:0}, "J2":{golesL:3,golesV:1}, "K1":{golesL:3,golesV:0}, "K2":{golesL:0,golesV:2}, "L1":{golesL:2,golesV:1}, "L2":{golesL:1,golesV:0} } },
-  { nombre:"Gerardo", pronosticos:{ "A1":{golesL:1,golesV:0}, "A2":{golesL:1,golesV:1}, "A3":{golesL:0,golesV:2}, "A4":{golesL:3,golesV:1}, "B1":{golesL:2,golesV:0}, "B2":{golesL:1,golesV:1}, "B3":{golesL:2,golesV:1}, "B4":{golesL:1,golesV:0}, "C1":{golesL:2,golesV:0}, "C2":{golesL:1,golesV:3}, "C3":{golesL:4,golesV:0}, "C4":{golesL:1,golesV:1}, "D1":{golesL:1,golesV:1}, "D2":{golesL:1,golesV:2}, "D3":{golesL:2,golesV:1}, "D4":{golesL:0,golesV:2}, "E1":{golesL:4,golesV:1}, "E2":{golesL:0,golesV:2}, "F1":{golesL:3,golesV:1}, "F2":{golesL:1,golesV:1}, "G1":{golesL:2,golesV:0}, "G2":{golesL:1,golesV:1}, "H1":{golesL:3,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:1}, "I2":{golesL:0,golesV:2}, "J1":{golesL:2,golesV:0}, "J2":{golesL:3,golesV:1}, "K1":{golesL:2,golesV:0}, "K2":{golesL:1,golesV:2}, "L1":{golesL:2,golesV:1}, "L2":{golesL:2,golesV:0} } },
-  { nombre:"Gino Colos", pronosticos:{ "A1":{golesL:1,golesV:1}, "A2":{golesL:1,golesV:2}, "A3":{golesL:2,golesV:0}, "A4":{golesL:1,golesV:2}, "B1":{golesL:2,golesV:0}, "B2":{golesL:1,golesV:2}, "B3":{golesL:2,golesV:1}, "B4":{golesL:1,golesV:1}, "C1":{golesL:1,golesV:0}, "C2":{golesL:0,golesV:2}, "C3":{golesL:3,golesV:0}, "C4":{golesL:1,golesV:2}, "D1":{golesL:1,golesV:2}, "D2":{golesL:0,golesV:2}, "D3":{golesL:2,golesV:1}, "D4":{golesL:1,golesV:2}, "E1":{golesL:3,golesV:1}, "E2":{golesL:1,golesV:2}, "F1":{golesL:2,golesV:0}, "F2":{golesL:1,golesV:1}, "G1":{golesL:2,golesV:1}, "G2":{golesL:1,golesV:2}, "H1":{golesL:2,golesV:0}, "H2":{golesL:1,golesV:3}, "I1":{golesL:2,golesV:0}, "I2":{golesL:0,golesV:2}, "J1":{golesL:2,golesV:1}, "J2":{golesL:3,golesV:0}, "K1":{golesL:2,golesV:1}, "K2":{golesL:0,golesV:2}, "L1":{golesL:3,golesV:1}, "L2":{golesL:2,golesV:1} } },
-  // TANDA 2
-  { nombre:"Goyechea", pronosticos:{ "A1":{golesL:2,golesV:0}, "A2":{golesL:1,golesV:0}, "A3":{golesL:1,golesV:2}, "A4":{golesL:1,golesV:1}, "B1":{golesL:2,golesV:1}, "B2":{golesL:0,golesV:2}, "B3":{golesL:2,golesV:1}, "B4":{golesL:3,golesV:0}, "C1":{golesL:2,golesV:0}, "C2":{golesL:0,golesV:2}, "C3":{golesL:3,golesV:0}, "C4":{golesL:1,golesV:1}, "D1":{golesL:1,golesV:1}, "D2":{golesL:0,golesV:2}, "D3":{golesL:2,golesV:0}, "D4":{golesL:1,golesV:2}, "E1":{golesL:3,golesV:0}, "E2":{golesL:1,golesV:2}, "F1":{golesL:2,golesV:1}, "F2":{golesL:2,golesV:1}, "G1":{golesL:2,golesV:0}, "G2":{golesL:1,golesV:1}, "H1":{golesL:3,golesV:0}, "H2":{golesL:0,golesV:2}, "I1":{golesL:2,golesV:0}, "I2":{golesL:0,golesV:2}, "J1":{golesL:1,golesV:0}, "J2":{golesL:2,golesV:0}, "K1":{golesL:2,golesV:0}, "K2":{golesL:0,golesV:2}, "L1":{golesL:2,golesV:1}, "L2":{golesL:2,golesV:0} } },
-  { nombre:"José", pronosticos:{ "A1":{golesL:2,golesV:0}, "A2":{golesL:1,golesV:0}, "A3":{golesL:1,golesV:0}, "A4":{golesL:2,golesV:0}, "B1":{golesL:1,golesV:0}, "B2":{golesL:0,golesV:3}, "B3":{golesL:2,golesV:1}, "B4":{golesL:1,golesV:1}, "C1":{golesL:2,golesV:1}, "C2":{golesL:0,golesV:3}, "C3":{golesL:3,golesV:0}, "C4":{golesL:1,golesV:2}, "D1":{golesL:2,golesV:1}, "D2":{golesL:0,golesV:2}, "D3":{golesL:1,golesV:0}, "D4":{golesL:1,golesV:0}, "E1":{golesL:3,golesV:0}, "E2":{golesL:0,golesV:2}, "F1":{golesL:3,golesV:1}, "F2":{golesL:1,golesV:0}, "G1":{golesL:2,golesV:0}, "G2":{golesL:2,golesV:0}, "H1":{golesL:4,golesV:0}, "H2":{golesL:0,golesV:2}, "I1":{golesL:4,golesV:0}, "I2":{golesL:0,golesV:2}, "J1":{golesL:2,golesV:0}, "J2":{golesL:3,golesV:0}, "K1":{golesL:3,golesV:0}, "K2":{golesL:0,golesV:2}, "L1":{golesL:1,golesV:0}, "L2":{golesL:1,golesV:0} } },
-  { nombre:"Juan Pérez", pronosticos:{ "A1":{golesL:2,golesV:1}, "A2":{golesL:0,golesV:2}, "A3":{golesL:2,golesV:2}, "A4":{golesL:2,golesV:2}, "B1":{golesL:1,golesV:3}, "B2":{golesL:1,golesV:2}, "B3":{golesL:3,golesV:1}, "B4":{golesL:0,golesV:1}, "C1":{golesL:3,golesV:0}, "C2":{golesL:1,golesV:2}, "C3":{golesL:4,golesV:0}, "C4":{golesL:1,golesV:1}, "D1":{golesL:0,golesV:2}, "D2":{golesL:0,golesV:3}, "D3":{golesL:2,golesV:2}, "D4":{golesL:1,golesV:0}, "E1":{golesL:3,golesV:0}, "E2":{golesL:2,golesV:0}, "F1":{golesL:1,golesV:2}, "F2":{golesL:2,golesV:2}, "G1":{golesL:3,golesV:1}, "G2":{golesL:2,golesV:1}, "H1":{golesL:4,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:3,golesV:0}, "I2":{golesL:0,golesV:2}, "J1":{golesL:2,golesV:0}, "J2":{golesL:2,golesV:1}, "K1":{golesL:2,golesV:0}, "K2":{golesL:0,golesV:3}, "L1":{golesL:1,golesV:1}, "L2":{golesL:3,golesV:1} } },
-  { nombre:"Krikor", pronosticos:{ "A1":{golesL:1,golesV:0}, "A2":{golesL:1,golesV:0}, "A3":{golesL:0,golesV:1}, "A4":{golesL:1,golesV:1}, "B1":{golesL:1,golesV:0}, "B2":{golesL:0,golesV:2}, "B3":{golesL:1,golesV:0}, "B4":{golesL:1,golesV:0}, "C1":{golesL:3,golesV:0}, "C2":{golesL:0,golesV:2}, "C3":{golesL:6,golesV:0}, "C4":{golesL:1,golesV:1}, "D1":{golesL:1,golesV:2}, "D2":{golesL:1,golesV:2}, "D3":{golesL:1,golesV:2}, "D4":{golesL:1,golesV:2}, "E1":{golesL:4,golesV:0}, "E2":{golesL:2,golesV:1}, "F1":{golesL:1,golesV:2}, "F2":{golesL:2,golesV:1}, "G1":{golesL:2,golesV:0}, "G2":{golesL:2,golesV:1}, "H1":{golesL:4,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:1}, "I2":{golesL:0,golesV:2}, "J1":{golesL:2,golesV:0}, "J2":{golesL:3,golesV:1}, "K1":{golesL:4,golesV:0}, "K2":{golesL:0,golesV:2}, "L1":{golesL:1,golesV:2}, "L2":{golesL:3,golesV:0} } },
-  { nombre:"Leonel", pronosticos:{ "A1":{golesL:3,golesV:1}, "A2":{golesL:1,golesV:1}, "A3":{golesL:1,golesV:2}, "A4":{golesL:2,golesV:0}, "B1":{golesL:2,golesV:1}, "B2":{golesL:0,golesV:2}, "B3":{golesL:3,golesV:1}, "B4":{golesL:1,golesV:0}, "C1":{golesL:2,golesV:0}, "C2":{golesL:0,golesV:2}, "C3":{golesL:4,golesV:0}, "C4":{golesL:1,golesV:2}, "D1":{golesL:1,golesV:2}, "D2":{golesL:0,golesV:2}, "D3":{golesL:1,golesV:0}, "D4":{golesL:1,golesV:3}, "E1":{golesL:3,golesV:0}, "E2":{golesL:1,golesV:2}, "F1":{golesL:2,golesV:1}, "F2":{golesL:2,golesV:1}, "G1":{golesL:2,golesV:0}, "G2":{golesL:1,golesV:1}, "H1":{golesL:3,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:0}, "I2":{golesL:0,golesV:2}, "J1":{golesL:2,golesV:0}, "J2":{golesL:3,golesV:1}, "K1":{golesL:2,golesV:0}, "K2":{golesL:0,golesV:2}, "L1":{golesL:1,golesV:1}, "L2":{golesL:2,golesV:0} } },
-  { nombre:"Lucas Maseio", pronosticos:{ "A1":{golesL:3,golesV:1}, "A2":{golesL:1,golesV:1}, "A3":{golesL:1,golesV:2}, "A4":{golesL:2,golesV:1}, "B1":{golesL:1,golesV:1}, "B2":{golesL:0,golesV:2}, "B3":{golesL:2,golesV:0}, "B4":{golesL:2,golesV:0}, "C1":{golesL:2,golesV:0}, "C2":{golesL:0,golesV:2}, "C3":{golesL:3,golesV:0}, "C4":{golesL:1,golesV:1}, "D1":{golesL:1,golesV:1}, "D2":{golesL:0,golesV:2}, "D3":{golesL:2,golesV:0}, "D4":{golesL:0,golesV:1}, "E1":{golesL:3,golesV:0}, "E2":{golesL:1,golesV:2}, "F1":{golesL:2,golesV:1}, "F2":{golesL:2,golesV:1}, "G1":{golesL:2,golesV:0}, "G2":{golesL:1,golesV:1}, "H1":{golesL:3,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:0}, "I2":{golesL:0,golesV:2}, "J1":{golesL:1,golesV:0}, "J2":{golesL:2,golesV:0}, "K1":{golesL:2,golesV:0}, "K2":{golesL:0,golesV:2}, "L1":{golesL:2,golesV:1}, "L2":{golesL:2,golesV:0} } },
-  // TANDA 3
-  { nombre:"Lucas Racing", pronosticos:{ "A1":{golesL:2,golesV:1}, "A2":{golesL:2,golesV:1}, "A3":{golesL:2,golesV:1}, "A4":{golesL:1,golesV:1}, "B1":{golesL:2,golesV:0}, "B2":{golesL:0,golesV:2}, "B3":{golesL:2,golesV:0}, "B4":{golesL:2,golesV:0}, "C1":{golesL:2,golesV:0}, "C2":{golesL:0,golesV:2}, "C3":{golesL:2,golesV:0}, "C4":{golesL:2,golesV:1}, "D1":{golesL:1,golesV:2}, "D2":{golesL:0,golesV:2}, "D3":{golesL:2,golesV:1}, "D4":{golesL:0,golesV:2}, "E1":{golesL:3,golesV:0}, "E2":{golesL:1,golesV:2}, "F1":{golesL:2,golesV:1}, "F2":{golesL:2,golesV:0}, "G1":{golesL:2,golesV:0}, "G2":{golesL:0,golesV:1}, "H1":{golesL:2,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:0}, "I2":{golesL:0,golesV:2}, "J1":{golesL:2,golesV:0}, "J2":{golesL:2,golesV:0}, "K1":{golesL:3,golesV:0}, "K2":{golesL:1,golesV:2}, "L1":{golesL:2,golesV:1}, "L2":{golesL:2,golesV:0} } },
-  { nombre:"Luis", pronosticos:{ "A1":{golesL:2,golesV:1}, "A2":{golesL:1,golesV:1}, "A3":{golesL:1,golesV:0}, "A4":{golesL:1,golesV:0}, "B1":{golesL:1,golesV:2}, "B2":{golesL:2,golesV:2}, "B3":{golesL:2,golesV:0}, "B4":{golesL:1,golesV:1}, "C1":{golesL:1,golesV:2}, "C2":{golesL:0,golesV:3}, "C3":{golesL:6,golesV:0}, "C4":{golesL:1,golesV:3}, "D1":{golesL:1,golesV:2}, "D2":{golesL:1,golesV:2}, "D3":{golesL:2,golesV:0}, "D4":{golesL:0,golesV:2}, "E1":{golesL:1,golesV:0}, "E2":{golesL:2,golesV:2}, "F1":{golesL:2,golesV:1}, "F2":{golesL:2,golesV:0}, "G1":{golesL:2,golesV:0}, "G2":{golesL:1,golesV:1}, "H1":{golesL:3,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:2}, "I2":{golesL:0,golesV:2}, "J1":{golesL:1,golesV:1}, "J2":{golesL:2,golesV:0}, "K1":{golesL:5,golesV:0}, "K2":{golesL:1,golesV:4}, "L1":{golesL:2,golesV:0}, "L2":{golesL:2,golesV:0} } },
-  { nombre:"Martín L.", pronosticos:{ "A1":{golesL:2,golesV:1}, "A2":{golesL:2,golesV:1}, "A3":{golesL:1,golesV:2}, "A4":{golesL:1,golesV:0}, "B1":{golesL:2,golesV:1}, "B2":{golesL:2,golesV:1}, "B3":{golesL:1,golesV:0}, "B4":{golesL:1,golesV:1}, "C1":{golesL:1,golesV:2}, "C2":{golesL:1,golesV:2}, "C3":{golesL:3,golesV:0}, "C4":{golesL:1,golesV:2}, "D1":{golesL:0,golesV:2}, "D2":{golesL:1,golesV:2}, "D3":{golesL:0,golesV:2}, "D4":{golesL:0,golesV:1}, "E1":{golesL:2,golesV:0}, "E2":{golesL:1,golesV:2}, "F1":{golesL:2,golesV:0}, "F2":{golesL:1,golesV:2}, "G1":{golesL:2,golesV:0}, "G2":{golesL:2,golesV:1}, "H1":{golesL:3,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:2}, "I2":{golesL:0,golesV:2}, "J1":{golesL:1,golesV:1}, "J2":{golesL:2,golesV:1}, "K1":{golesL:2,golesV:0}, "K2":{golesL:0,golesV:3}, "L1":{golesL:1,golesV:2}, "L2":{golesL:2,golesV:2} } },
-  { nombre:"Pablo Dym.", pronosticos:{ "A1":{golesL:2,golesV:0}, "A2":{golesL:1,golesV:0}, "A3":{golesL:1,golesV:1}, "A4":{golesL:1,golesV:1}, "B1":{golesL:2,golesV:1}, "B2":{golesL:0,golesV:2}, "B3":{golesL:2,golesV:0}, "B4":{golesL:2,golesV:0}, "C1":{golesL:2,golesV:0}, "C2":{golesL:0,golesV:2}, "C3":{golesL:3,golesV:0}, "C4":{golesL:1,golesV:1}, "D1":{golesL:1,golesV:1}, "D2":{golesL:0,golesV:2}, "D3":{golesL:2,golesV:0}, "D4":{golesL:1,golesV:2}, "E1":{golesL:3,golesV:0}, "E2":{golesL:1,golesV:2}, "F1":{golesL:2,golesV:1}, "F2":{golesL:2,golesV:1}, "G1":{golesL:2,golesV:0}, "G2":{golesL:1,golesV:1}, "H1":{golesL:3,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:0}, "I2":{golesL:0,golesV:2}, "J1":{golesL:1,golesV:0}, "J2":{golesL:2,golesV:0}, "K1":{golesL:2,golesV:0}, "K2":{golesL:0,golesV:2}, "L1":{golesL:2,golesV:1}, "L2":{golesL:2,golesV:0} } },
-  { nombre:"Pablo Muchnik", pronosticos:{ "A1":{golesL:3,golesV:1}, "A2":{golesL:2,golesV:1}, "A3":{golesL:1,golesV:2}, "A4":{golesL:2,golesV:1}, "B1":{golesL:2,golesV:1}, "B2":{golesL:0,golesV:2}, "B3":{golesL:3,golesV:1}, "B4":{golesL:2,golesV:0}, "C1":{golesL:2,golesV:0}, "C2":{golesL:0,golesV:2}, "C3":{golesL:4,golesV:0}, "C4":{golesL:1,golesV:2}, "D1":{golesL:1,golesV:1}, "D2":{golesL:0,golesV:2}, "D3":{golesL:2,golesV:0}, "D4":{golesL:1,golesV:3}, "E1":{golesL:3,golesV:0}, "E2":{golesL:1,golesV:2}, "F1":{golesL:3,golesV:1}, "F2":{golesL:2,golesV:1}, "G1":{golesL:3,golesV:0}, "G2":{golesL:1,golesV:1}, "H1":{golesL:3,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:0}, "I2":{golesL:0,golesV:2}, "J1":{golesL:2,golesV:0}, "J2":{golesL:3,golesV:1}, "K1":{golesL:2,golesV:0}, "K2":{golesL:0,golesV:2}, "L1":{golesL:2,golesV:1}, "L2":{golesL:2,golesV:0} } },
-  { nombre:"Ricardo", pronosticos:{ "A1":{golesL:2,golesV:0}, "A2":{golesL:1,golesV:1}, "A3":{golesL:1,golesV:1}, "A4":{golesL:2,golesV:1}, "B1":{golesL:2,golesV:1}, "B2":{golesL:0,golesV:2}, "B3":{golesL:2,golesV:0}, "B4":{golesL:1,golesV:1}, "C1":{golesL:3,golesV:1}, "C2":{golesL:0,golesV:2}, "C3":{golesL:2,golesV:0}, "C4":{golesL:1,golesV:1}, "D1":{golesL:2,golesV:1}, "D2":{golesL:1,golesV:2}, "D3":{golesL:1,golesV:1}, "D4":{golesL:2,golesV:0}, "E1":{golesL:3,golesV:0}, "E2":{golesL:1,golesV:2}, "F1":{golesL:2,golesV:1}, "F2":{golesL:2,golesV:0}, "G1":{golesL:2,golesV:0}, "G2":{golesL:1,golesV:1}, "H1":{golesL:3,golesV:0}, "H2":{golesL:1,golesV:2}, "I1":{golesL:2,golesV:0}, "I2":{golesL:0,golesV:3}, "J1":{golesL:3,golesV:0}, "J2":{golesL:2,golesV:0}, "K1":{golesL:2,golesV:0}, "K2":{golesL:1,golesV:2}, "L1":{golesL:2,golesV:1}, "L2":{golesL:2,golesV:1} } }
+// TANDA 1
+const participantesTanda1 = [
+  {
+    nombre: "Alex Moyano",
+    pronosticos: {
+      "A1":{golesL:2,golesV:0},"A2":{golesL:1,golesV:0},"A3":{golesL:1,golesV:0},"A4":{golesL:1,golesV:2},"A5":{golesL:1,golesV:0},"A6":{golesL:0,golesV:2},
+      "B1":{golesL:1,golesV:0},"B2":{golesL:0,golesV:2},"B3":{golesL:2,golesV:1},"B4":{golesL:1,golesV:0},"B5":{golesL:2,golesV:1},"B6":{golesL:1,golesV:0},
+      "C1":{golesL:2,golesV:1},"C2":{golesL:0,golesV:1},"C3":{golesL:3,golesV:0},"C4":{golesL:1,golesV:2},"C5":{golesL:1,golesV:1},"C6":{golesL:3,golesV:0},
+      "D1":{golesL:1,golesV:1},"D2":{golesL:0,golesV:1},"D3":{golesL:2,golesV:1},"D4":{golesL:0,golesV:1},"D5":{golesL:2,golesV:0},"D6":{golesL:2,golesV:0},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:0,golesV:2},"E3":{golesL:1,golesV:1},"E4":{golesL:0,golesV:2},"E5":{golesL:0,golesV:2},"E6":{golesL:0,golesV:2},
+      "F1":{golesL:2,golesV:1},"F2":{golesL:2,golesV:0},"F3":{golesL:2,golesV:0},"F4":{golesL:1,golesV:1},"F5":{golesL:0,golesV:3},"F6":{golesL:0,golesV:1},
+      "G1":{golesL:3,golesV:1},"G2":{golesL:1,golesV:1},"G3":{golesL:2,golesV:0},"G4":{golesL:2,golesV:0},"G5":{golesL:1,golesV:3},"G6":{golesL:2,golesV:0},
+      "H1":{golesL:5,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:3,golesV:0},"H4":{golesL:0,golesV:2},"H5":{golesL:1,golesV:2},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:3,golesV:1},"I2":{golesL:0,golesV:2},"I3":{golesL:2,golesV:0},"I4":{golesL:3,golesV:1},"I5":{golesL:2,golesV:3},"I6":{golesL:2,golesV:0},
+      "J1":{golesL:1,golesV:0},"J2":{golesL:2,golesV:1},"J3":{golesL:2,golesV:0},"J4":{golesL:1,golesV:1},"J5":{golesL:0,golesV:2},"J6":{golesL:1,golesV:2},
+      "K1":{golesL:4,golesV:0},"K2":{golesL:0,golesV:3},"K3":{golesL:3,golesV:1},"K4":{golesL:0,golesV:3},"K5":{golesL:2,golesV:1},"K6":{golesL:1,golesV:1},
+      "L1":{golesL:2,golesV:2},"L2":{golesL:2,golesV:0},"L3":{golesL:2,golesV:0},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:3},"L6":{golesL:2,golesV:2}
+    }
+  },
+  {
+    nombre: "Alex C.",
+    pronosticos: {
+      "A1":{golesL:1,golesV:1},"A2":{golesL:2,golesV:2},"A3":{golesL:1,golesV:2},"A4":{golesL:1,golesV:2},"A5":{golesL:2,golesV:1},"A6":{golesL:1,golesV:2},
+      "B1":{golesL:0,golesV:2},"B2":{golesL:0,golesV:2},"B3":{golesL:1,golesV:0},"B4":{golesL:1,golesV:1},"B5":{golesL:2,golesV:0},"B6":{golesL:2,golesV:0},
+      "C1":{golesL:1,golesV:2},"C2":{golesL:0,golesV:2},"C3":{golesL:2,golesV:0},"C4":{golesL:2,golesV:2},"C5":{golesL:1,golesV:2},"C6":{golesL:2,golesV:0},
+      "D1":{golesL:0,golesV:2},"D2":{golesL:0,golesV:2},"D3":{golesL:2,golesV:0},"D4":{golesL:2,golesV:1},"D5":{golesL:2,golesV:1},"D6":{golesL:2,golesV:0},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:1,golesV:1},"E3":{golesL:2,golesV:1},"E4":{golesL:0,golesV:1},"E5":{golesL:1,golesV:2},"E6":{golesL:0,golesV:2},
+      "F1":{golesL:2,golesV:3},"F2":{golesL:2,golesV:1},"F3":{golesL:2,golesV:1},"F4":{golesL:2,golesV:1},"F5":{golesL:1,golesV:2},"F6":{golesL:2,golesV:2},
+      "G1":{golesL:3,golesV:1},"G2":{golesL:1,golesV:1},"G3":{golesL:2,golesV:0},"G4":{golesL:2,golesV:0},"G5":{golesL:1,golesV:3},"G6":{golesL:2,golesV:0},
+      "H1":{golesL:4,golesV:0},"H2":{golesL:1,golesV:1},"H3":{golesL:3,golesV:1},"H4":{golesL:0,golesV:2},"H5":{golesL:1,golesV:3},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:3,golesV:1},"I2":{golesL:0,golesV:3},"I3":{golesL:2,golesV:0},"I4":{golesL:3,golesV:1},"I5":{golesL:2,golesV:3},"I6":{golesL:2,golesV:0},
+      "J1":{golesL:2,golesV:0},"J2":{golesL:2,golesV:1},"J3":{golesL:2,golesV:1},"J4":{golesL:0,golesV:2},"J5":{golesL:1,golesV:2},"J6":{golesL:2,golesV:1},
+      "K1":{golesL:2,golesV:0},"K2":{golesL:0,golesV:2},"K3":{golesL:2,golesV:0},"K4":{golesL:0,golesV:2},"K5":{golesL:1,golesV:1},"K6":{golesL:1,golesV:1},
+      "L1":{golesL:3,golesV:1},"L2":{golesL:2,golesV:0},"L3":{golesL:2,golesV:0},"L4":{golesL:2,golesV:1},"L5":{golesL:1,golesV:3},"L6":{golesL:2,golesV:1}
+    }
+  },
+  {
+    nombre: "Cosmo",
+    pronosticos: {
+      "A1":{golesL:2,golesV:1},"A2":{golesL:1,golesV:0},"A3":{golesL:0,golesV:1},"A4":{golesL:1,golesV:2},"A5":{golesL:0,golesV:2},"A6":{golesL:0,golesV:1},
+      "B1":{golesL:2,golesV:1},"B2":{golesL:2,golesV:1},"B3":{golesL:0,golesV:1},"B4":{golesL:2,golesV:1},"B5":{golesL:2,golesV:1},"B6":{golesL:1,golesV:1},
+      "C1":{golesL:1,golesV:1},"C2":{golesL:0,golesV:2},"C3":{golesL:2,golesV:0},"C4":{golesL:1,golesV:2},"C5":{golesL:1,golesV:2},"C6":{golesL:1,golesV:0},
+      "D1":{golesL:0,golesV:1},"D2":{golesL:2,golesV:1},"D3":{golesL:2,golesV:2},"D4":{golesL:0,golesV:2},"D5":{golesL:0,golesV:1},"D6":{golesL:2,golesV:1},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:0,golesV:2},"E3":{golesL:2,golesV:0},"E4":{golesL:0,golesV:1},"E5":{golesL:1,golesV:2},"E6":{golesL:0,golesV:1},
+      "F1":{golesL:1,golesV:2},"F2":{golesL:2,golesV:0},"F3":{golesL:2,golesV:0},"F4":{golesL:1,golesV:2},"F5":{golesL:1,golesV:2},"F6":{golesL:2,golesV:1},
+      "G1":{golesL:1,golesV:2},"G2":{golesL:1,golesV:2},"G3":{golesL:2,golesV:0},"G4":{golesL:0,golesV:1},"G5":{golesL:2,golesV:1},"G6":{golesL:1,golesV:2},
+      "H1":{golesL:2,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:1,golesV:0},"H4":{golesL:2,golesV:1},"H5":{golesL:0,golesV:2},"H6":{golesL:0,golesV:1},
+      "I1":{golesL:2,golesV:1},"I2":{golesL:1,golesV:0},"I3":{golesL:2,golesV:0},"I4":{golesL:1,golesV:0},"I5":{golesL:0,golesV:2},"I6":{golesL:2,golesV:1},
+      "J1":{golesL:2,golesV:0},"J2":{golesL:2,golesV:0},"J3":{golesL:0,golesV:1},"J4":{golesL:2,golesV:0},"J5":{golesL:1,golesV:2},"J6":{golesL:1,golesV:0},
+      "K1":{golesL:2,golesV:1},"K2":{golesL:2,golesV:0},"K3":{golesL:2,golesV:0},"K4":{golesL:1,golesV:2},"K5":{golesL:2,golesV:2},"K6":{golesL:1,golesV:1},
+      "L1":{golesL:1,golesV:1},"L2":{golesL:0,golesV:1},"L3":{golesL:2,golesV:2},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:2},"L6":{golesL:1,golesV:0}
+    }
+  },
+  {
+    nombre: "Diego Castiñeiras",
+    pronosticos: {
+      "A1":{golesL:2,golesV:0},"A2":{golesL:2,golesV:2},"A3":{golesL:1,golesV:0},"A4":{golesL:1,golesV:1},"A5":{golesL:0,golesV:1},"A6":{golesL:1,golesV:3},
+      "B1":{golesL:1,golesV:1},"B2":{golesL:0,golesV:2},"B3":{golesL:1,golesV:0},"B4":{golesL:2,golesV:1},"B5":{golesL:2,golesV:2},"B6":{golesL:2,golesV:1},
+      "C1":{golesL:2,golesV:2},"C2":{golesL:0,golesV:2},"C3":{golesL:5,golesV:0},"C4":{golesL:1,golesV:2},"C5":{golesL:1,golesV:2},"C6":{golesL:3,golesV:0},
+      "D1":{golesL:1,golesV:1},"D2":{golesL:0,golesV:2},"D3":{golesL:3,golesV:2},"D4":{golesL:1,golesV:0},"D5":{golesL:2,golesV:0},"D6":{golesL:2,golesV:0},
+      "E1":{golesL:1,golesV:0},"E2":{golesL:1,golesV:2},"E3":{golesL:2,golesV:2},"E4":{golesL:0,golesV:3},"E5":{golesL:1,golesV:0},"E6":{golesL:1,golesV:3},
+      "F1":{golesL:1,golesV:3},"F2":{golesL:4,golesV:2},"F3":{golesL:2,golesV:0},"F4":{golesL:2,golesV:0},"F5":{golesL:1,golesV:2},"F6":{golesL:1,golesV:1},
+      "G1":{golesL:2,golesV:1},"G2":{golesL:1,golesV:0},"G3":{golesL:3,golesV:1},"G4":{golesL:3,golesV:1},"G5":{golesL:1,golesV:2},"G6":{golesL:1,golesV:0},
+      "H1":{golesL:4,golesV:0},"H2":{golesL:1,golesV:1},"H3":{golesL:2,golesV:0},"H4":{golesL:0,golesV:2},"H5":{golesL:0,golesV:2},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:4,golesV:2},"I2":{golesL:0,golesV:2},"I3":{golesL:3,golesV:0},"I4":{golesL:2,golesV:0},"I5":{golesL:1,golesV:0},"I6":{golesL:1,golesV:0},
+      "J1":{golesL:2,golesV:0},"J2":{golesL:3,golesV:1},"J3":{golesL:0,golesV:1},"J4":{golesL:2,golesV:0},"J5":{golesL:0,golesV:4},"J6":{golesL:1,golesV:2},
+      "K1":{golesL:3,golesV:0},"K2":{golesL:0,golesV:2},"K3":{golesL:3,golesV:1},"K4":{golesL:1,golesV:2},"K5":{golesL:1,golesV:0},"K6":{golesL:0,golesV:0},
+      "L1":{golesL:2,golesV:1},"L2":{golesL:1,golesV:0},"L3":{golesL:1,golesV:0},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:1},"L6":{golesL:1,golesV:1}
+    }
+  },
+  {
+    nombre: "Gerardo",
+    pronosticos: {
+      "A1":{golesL:1,golesV:0},"A2":{golesL:1,golesV:1},"A3":{golesL:0,golesV:2},"A4":{golesL:3,golesV:1},"A5":{golesL:1,golesV:2},"A6":{golesL:2,golesV:1},
+      "B1":{golesL:2,golesV:0},"B2":{golesL:1,golesV:1},"B3":{golesL:2,golesV:1},"B4":{golesL:1,golesV:0},"B5":{golesL:3,golesV:1},"B6":{golesL:0,golesV:2},
+      "C1":{golesL:2,golesV:0},"C2":{golesL:1,golesV:3},"C3":{golesL:4,golesV:0},"C4":{golesL:1,golesV:1},"C5":{golesL:1,golesV:3},"C6":{golesL:3,golesV:0},
+      "D1":{golesL:1,golesV:1},"D2":{golesL:1,golesV:2},"D3":{golesL:2,golesV:1},"D4":{golesL:0,golesV:2},"D5":{golesL:2,golesV:2},"D6":{golesL:3,golesV:1},
+      "E1":{golesL:4,golesV:1},"E2":{golesL:0,golesV:2},"E3":{golesL:2,golesV:1},"E4":{golesL:0,golesV:3},"E5":{golesL:0,golesV:2},"E6":{golesL:1,golesV:2},
+      "F1":{golesL:3,golesV:1},"F2":{golesL:1,golesV:1},"F3":{golesL:2,golesV:0},"F4":{golesL:0,golesV:1},"F5":{golesL:0,golesV:2},"F6":{golesL:1,golesV:2},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:1,golesV:1},"G3":{golesL:3,golesV:1},"G4":{golesL:2,golesV:1},"G5":{golesL:1,golesV:2},"G6":{golesL:1,golesV:0},
+      "H1":{golesL:3,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:3,golesV:1},"H4":{golesL:0,golesV:3},"H5":{golesL:1,golesV:2},"H6":{golesL:1,golesV:1},
+      "I1":{golesL:2,golesV:1},"I2":{golesL:0,golesV:2},"I3":{golesL:3,golesV:1},"I4":{golesL:2,golesV:0},"I5":{golesL:1,golesV:2},"I6":{golesL:1,golesV:1},
+      "J1":{golesL:2,golesV:0},"J2":{golesL:3,golesV:1},"J3":{golesL:0,golesV:1},"J4":{golesL:2,golesV:1},"J5":{golesL:0,golesV:3},"J6":{golesL:1,golesV:2},
+      "K1":{golesL:2,golesV:0},"K2":{golesL:1,golesV:2},"K3":{golesL:2,golesV:0},"K4":{golesL:1,golesV:3},"K5":{golesL:2,golesV:1},"K6":{golesL:0,golesV:1},
+      "L1":{golesL:2,golesV:1},"L2":{golesL:2,golesV:0},"L3":{golesL:3,golesV:1},"L4":{golesL:3,golesV:0},"L5":{golesL:0,golesV:2},"L6":{golesL:1,golesV:2}
+    }
+  },
+  {
+    nombre: "Gino Colos",
+    pronosticos: {
+      "A1":{golesL:1,golesV:1},"A2":{golesL:1,golesV:2},"A3":{golesL:2,golesV:0},"A4":{golesL:1,golesV:2},"A5":{golesL:1,golesV:0},"A6":{golesL:2,golesV:2},
+      "B1":{golesL:2,golesV:0},"B2":{golesL:1,golesV:2},"B3":{golesL:2,golesV:1},"B4":{golesL:1,golesV:1},"B5":{golesL:1,golesV:0},"B6":{golesL:1,golesV:2},
+      "C1":{golesL:1,golesV:0},"C2":{golesL:0,golesV:2},"C3":{golesL:3,golesV:0},"C4":{golesL:1,golesV:2},"C5":{golesL:1,golesV:2},"C6":{golesL:2,golesV:1},
+      "D1":{golesL:1,golesV:2},"D2":{golesL:0,golesV:2},"D3":{golesL:2,golesV:1},"D4":{golesL:1,golesV:2},"D5":{golesL:1,golesV:0},"D6":{golesL:1,golesV:0},
+      "E1":{golesL:3,golesV:1},"E2":{golesL:1,golesV:2},"E3":{golesL:2,golesV:1},"E4":{golesL:0,golesV:2},"E5":{golesL:0,golesV:1},"E6":{golesL:1,golesV:2},
+      "F1":{golesL:2,golesV:0},"F2":{golesL:1,golesV:1},"F3":{golesL:2,golesV:1},"F4":{golesL:1,golesV:1},"F5":{golesL:1,golesV:2},"F6":{golesL:1,golesV:2},
+      "G1":{golesL:2,golesV:1},"G2":{golesL:1,golesV:2},"G3":{golesL:2,golesV:0},"G4":{golesL:2,golesV:1},"G5":{golesL:1,golesV:3},"G6":{golesL:1,golesV:0},
+      "H1":{golesL:2,golesV:0},"H2":{golesL:1,golesV:3},"H3":{golesL:3,golesV:1},"H4":{golesL:0,golesV:2},"H5":{golesL:1,golesV:2},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:2,golesV:0},"I2":{golesL:0,golesV:2},"I3":{golesL:2,golesV:1},"I4":{golesL:3,golesV:1},"I5":{golesL:1,golesV:2},"I6":{golesL:2,golesV:1},
+      "J1":{golesL:2,golesV:1},"J2":{golesL:3,golesV:0},"J3":{golesL:2,golesV:0},"J4":{golesL:1,golesV:2},"J5":{golesL:0,golesV:4},"J6":{golesL:1,golesV:2},
+      "K1":{golesL:2,golesV:1},"K2":{golesL:0,golesV:2},"K3":{golesL:3,golesV:1},"K4":{golesL:1,golesV:2},"K5":{golesL:2,golesV:1},"K6":{golesL:1,golesV:2},
+      "L1":{golesL:3,golesV:1},"L2":{golesL:2,golesV:1},"L3":{golesL:2,golesV:0},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:2},"L6":{golesL:1,golesV:1}
+    }
+  }
 ];
 
+// TANDA 2
+const participantesTanda2 = [
+  {
+    nombre: "Goyechea",
+    pronosticos: {
+      "A1":{golesL:2,golesV:0},"A2":{golesL:1,golesV:0},"A3":{golesL:1,golesV:2},"A4":{golesL:1,golesV:1},"A5":{golesL:2,golesV:1},"A6":{golesL:1,golesV:2},
+      "B1":{golesL:2,golesV:1},"B2":{golesL:0,golesV:2},"B3":{golesL:2,golesV:1},"B4":{golesL:3,golesV:0},"B5":{golesL:2,golesV:0},"B6":{golesL:2,golesV:0},
+      "C1":{golesL:2,golesV:0},"C2":{golesL:0,golesV:2},"C3":{golesL:3,golesV:0},"C4":{golesL:1,golesV:1},"C5":{golesL:1,golesV:2},"C6":{golesL:2,golesV:0},
+      "D1":{golesL:1,golesV:1},"D2":{golesL:0,golesV:2},"D3":{golesL:2,golesV:0},"D4":{golesL:1,golesV:2},"D5":{golesL:2,golesV:1},"D6":{golesL:2,golesV:0},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:1,golesV:2},"E3":{golesL:2,golesV:1},"E4":{golesL:0,golesV:1},"E5":{golesL:1,golesV:2},"E6":{golesL:0,golesV:2},
+      "F1":{golesL:2,golesV:1},"F2":{golesL:2,golesV:1},"F3":{golesL:2,golesV:1},"F4":{golesL:2,golesV:1},"F5":{golesL:1,golesV:2},"F6":{golesL:2,golesV:2},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:1,golesV:1},"G3":{golesL:2,golesV:0},"G4":{golesL:2,golesV:0},"G5":{golesL:1,golesV:3},"G6":{golesL:2,golesV:0},
+      "H1":{golesL:3,golesV:0},"H2":{golesL:0,golesV:2},"H3":{golesL:3,golesV:1},"H4":{golesL:0,golesV:2},"H5":{golesL:1,golesV:3},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:2,golesV:0},"I2":{golesL:0,golesV:2},"I3":{golesL:2,golesV:0},"I4":{golesL:3,golesV:1},"I5":{golesL:2,golesV:3},"I6":{golesL:2,golesV:0},
+      "J1":{golesL:1,golesV:0},"J2":{golesL:2,golesV:0},"J3":{golesL:2,golesV:1},"J4":{golesL:0,golesV:2},"J5":{golesL:1,golesV:2},"J6":{golesL:2,golesV:1},
+      "K1":{golesL:2,golesV:0},"K2":{golesL:0,golesV:2},"K3":{golesL:2,golesV:0},"K4":{golesL:0,golesV:2},"K5":{golesL:1,golesV:1},"K6":{golesL:1,golesV:1},
+      "L1":{golesL:2,golesV:1},"L2":{golesL:2,golesV:0},"L3":{golesL:2,golesV:0},"L4":{golesL:2,golesV:1},"L5":{golesL:1,golesV:3},"L6":{golesL:2,golesV:1}
+    }
+  },
+  {
+    nombre: "José",
+    pronosticos: {
+      "A1":{golesL:2,golesV:0},"A2":{golesL:1,golesV:0},"A3":{golesL:1,golesV:0},"A4":{golesL:2,golesV:0},"A5":{golesL:0,golesV:2},"A6":{golesL:0,golesV:2},
+      "B1":{golesL:1,golesV:0},"B2":{golesL:0,golesV:3},"B3":{golesL:2,golesV:1},"B4":{golesL:1,golesV:1},"B5":{golesL:1,golesV:1},"B6":{golesL:2,golesV:0},
+      "C1":{golesL:2,golesV:1},"C2":{golesL:0,golesV:3},"C3":{golesL:3,golesV:0},"C4":{golesL:1,golesV:2},"C5":{golesL:0,golesV:3},"C6":{golesL:2,golesV:0},
+      "D1":{golesL:2,golesV:1},"D2":{golesL:0,golesV:2},"D3":{golesL:1,golesV:0},"D4":{golesL:1,golesV:0},"D5":{golesL:2,golesV:0},"D6":{golesL:2,golesV:0},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:0,golesV:2},"E3":{golesL:2,golesV:2},"E4":{golesL:0,golesV:3},"E5":{golesL:1,golesV:0},"E6":{golesL:1,golesV:3},
+      "F1":{golesL:3,golesV:1},"F2":{golesL:1,golesV:0},"F3":{golesL:2,golesV:0},"F4":{golesL:2,golesV:0},"F5":{golesL:1,golesV:2},"F6":{golesL:1,golesV:1},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:2,golesV:0},"G3":{golesL:3,golesV:1},"G4":{golesL:3,golesV:1},"G5":{golesL:1,golesV:2},"G6":{golesL:1,golesV:0},
+      "H1":{golesL:4,golesV:0},"H2":{golesL:0,golesV:2},"H3":{golesL:2,golesV:0},"H4":{golesL:0,golesV:2},"H5":{golesL:0,golesV:2},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:4,golesV:0},"I2":{golesL:0,golesV:2},"I3":{golesL:3,golesV:0},"I4":{golesL:2,golesV:0},"I5":{golesL:1,golesV:0},"I6":{golesL:1,golesV:0},
+      "J1":{golesL:2,golesV:0},"J2":{golesL:3,golesV:0},"J3":{golesL:0,golesV:1},"J4":{golesL:2,golesV:0},"J5":{golesL:0,golesV:4},"J6":{golesL:1,golesV:2},
+      "K1":{golesL:3,golesV:0},"K2":{golesL:0,golesV:2},"K3":{golesL:3,golesV:1},"K4":{golesL:1,golesV:2},"K5":{golesL:1,golesV:0},"K6":{golesL:0,golesV:0},
+      "L1":{golesL:1,golesV:0},"L2":{golesL:1,golesV:0},"L3":{golesL:1,golesV:0},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:1},"L6":{golesL:1,golesV:1}
+    }
+  },
+  {
+    nombre: "Juan Pérez",
+    pronosticos: {
+      "A1":{golesL:2,golesV:1},"A2":{golesL:0,golesV:2},"A3":{golesL:2,golesV:2},"A4":{golesL:2,golesV:2},"A5":{golesL:1,golesV:2},"A6":{golesL:2,golesV:1},
+      "B1":{golesL:1,golesV:3},"B2":{golesL:1,golesV:2},"B3":{golesL:3,golesV:1},"B4":{golesL:0,golesV:1},"B5":{golesL:3,golesV:1},"B6":{golesL:0,golesV:2},
+      "C1":{golesL:3,golesV:0},"C2":{golesL:1,golesV:2},"C3":{golesL:4,golesV:0},"C4":{golesL:1,golesV:1},"C5":{golesL:1,golesV:3},"C6":{golesL:3,golesV:0},
+      "D1":{golesL:0,golesV:2},"D2":{golesL:0,golesV:3},"D3":{golesL:2,golesV:2},"D4":{golesL:1,golesV:0},"D5":{golesL:2,golesV:2},"D6":{golesL:3,golesV:1},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:2,golesV:0},"E3":{golesL:2,golesV:1},"E4":{golesL:0,golesV:3},"E5":{golesL:0,golesV:2},"E6":{golesL:1,golesV:2},
+      "F1":{golesL:1,golesV:2},"F2":{golesL:2,golesV:2},"F3":{golesL:2,golesV:0},"F4":{golesL:0,golesV:1},"F5":{golesL:0,golesV:2},"F6":{golesL:1,golesV:2},
+      "G1":{golesL:3,golesV:1},"G2":{golesL:2,golesV:1},"G3":{golesL:2,golesV:0},"G4":{golesL:1,golesV:2},"G5":{golesL:0,golesV:2},"G6":{golesL:1,golesV:1},
+      "H1":{golesL:4,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:2,golesV:0},"H4":{golesL:0,golesV:3},"H5":{golesL:1,golesV:2},"H6":{golesL:0,golesV:1},
+      "I1":{golesL:3,golesV:0},"I2":{golesL:0,golesV:2},"I3":{golesL:2,golesV:0},"I4":{golesL:2,golesV:1},"I5":{golesL:1,golesV:2},"I6":{golesL:2,golesV:0},
+      "J1":{golesL:2,golesV:0},"J2":{golesL:2,golesV:1},"J3":{golesL:2,golesV:0},"J4":{golesL:3,golesV:1},"J5":{golesL:2,golesV:0},"J6":{golesL:1,golesV:2},
+      "K1":{golesL:2,golesV:0},"K2":{golesL:0,golesV:3},"K3":{golesL:2,golesV:0},"K4":{golesL:1,golesV:2},"K5":{golesL:2,golesV:1},"K6":{golesL:1,golesV:2},
+      "L1":{golesL:1,golesV:1},"L2":{golesL:3,golesV:1},"L3":{golesL:2,golesV:1},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:3},"L6":{golesL:1,golesV:2}
+    }
+  },
+  {
+    nombre: "Krikor",
+    pronosticos: {
+      "A1":{golesL:1,golesV:0},"A2":{golesL:1,golesV:0},"A3":{golesL:0,golesV:1},"A4":{golesL:1,golesV:1},"A5":{golesL:1,golesV:0},"A6":{golesL:2,golesV:2},
+      "B1":{golesL:1,golesV:0},"B2":{golesL:0,golesV:2},"B3":{golesL:1,golesV:0},"B4":{golesL:1,golesV:0},"B5":{golesL:1,golesV:0},"B6":{golesL:1,golesV:2},
+      "C1":{golesL:3,golesV:0},"C2":{golesL:0,golesV:2},"C3":{golesL:6,golesV:0},"C4":{golesL:1,golesV:1},"C5":{golesL:1,golesV:2},"C6":{golesL:2,golesV:1},
+      "D1":{golesL:1,golesV:2},"D2":{golesL:1,golesV:2},"D3":{golesL:1,golesV:2},"D4":{golesL:1,golesV:2},"D5":{golesL:1,golesV:0},"D6":{golesL:1,golesV:0},
+      "E1":{golesL:4,golesV:0},"E2":{golesL:2,golesV:1},"E3":{golesL:2,golesV:1},"E4":{golesL:0,golesV:2},"E5":{golesL:0,golesV:1},"E6":{golesL:1,golesV:2},
+      "F1":{golesL:1,golesV:2},"F2":{golesL:2,golesV:1},"F3":{golesL:2,golesV:1},"F4":{golesL:1,golesV:1},"F5":{golesL:1,golesV:2},"F6":{golesL:1,golesV:2},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:2,golesV:1},"G3":{golesL:2,golesV:0},"G4":{golesL:2,golesV:1},"G5":{golesL:1,golesV:3},"G6":{golesL:1,golesV:0},
+      "H1":{golesL:4,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:2,golesV:0},"H4":{golesL:1,golesV:2},"H5":{golesL:1,golesV:1},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:2,golesV:1},"I2":{golesL:0,golesV:2},"I3":{golesL:2,golesV:0},"I4":{golesL:0,golesV:2},"I5":{golesL:1,golesV:2},"I6":{golesL:1,golesV:1},
+      "J1":{golesL:2,golesV:0},"J2":{golesL:3,golesV:1},"J3":{golesL:2,golesV:0},"J4":{golesL:3,golesV:1},"J5":{golesL:4,golesV:0},"J6":{golesL:0,golesV:2},
+      "K1":{golesL:4,golesV:0},"K2":{golesL:0,golesV:2},"K3":{golesL:2,golesV:0},"K4":{golesL:0,golesV:2},"K5":{golesL:1,golesV:1},"K6":{golesL:1,golesV:1},
+      "L1":{golesL:1,golesV:2},"L2":{golesL:3,golesV:0},"L3":{golesL:2,golesV:0},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:3},"L6":{golesL:2,golesV:2}
+    }
+  },
+  {
+    nombre: "Leonel",
+    pronosticos: {
+      "A1":{golesL:3,golesV:1},"A2":{golesL:1,golesV:1},"A3":{golesL:1,golesV:2},"A4":{golesL:2,golesV:0},"A5":{golesL:1,golesV:0},"A6":{golesL:2,golesV:0},
+      "B1":{golesL:2,golesV:1},"B2":{golesL:0,golesV:2},"B3":{golesL:3,golesV:1},"B4":{golesL:1,golesV:0},"B5":{golesL:2,golesV:1},"B6":{golesL:1,golesV:1},
+      "C1":{golesL:2,golesV:0},"C2":{golesL:0,golesV:2},"C3":{golesL:4,golesV:0},"C4":{golesL:1,golesV:2},"C5":{golesL:1,golesV:2},"C6":{golesL:1,golesV:1},
+      "D1":{golesL:1,golesV:2},"D2":{golesL:0,golesV:2},"D3":{golesL:1,golesV:0},"D4":{golesL:1,golesV:3},"D5":{golesL:2,golesV:0},"D6":{golesL:0,golesV:2},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:1,golesV:2},"E3":{golesL:3,golesV:0},"E4":{golesL:0,golesV:2},"E5":{golesL:1,golesV:2},"E6":{golesL:0,golesV:2},
+      "F1":{golesL:2,golesV:1},"F2":{golesL:2,golesV:1},"F3":{golesL:2,golesV:0},"F4":{golesL:1,golesV:1},"F5":{golesL:0,golesV:2},"F6":{golesL:1,golesV:2},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:1,golesV:1},"G3":{golesL:2,golesV:0},"G4":{golesL:1,golesV:1},"G5":{golesL:0,golesV:2},"G6":{golesL:2,golesV:1},
+      "H1":{golesL:3,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:2,golesV:1},"H4":{golesL:0,golesV:2},"H5":{golesL:1,golesV:3},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:2,golesV:0},"I2":{golesL:0,golesV:2},"I3":{golesL:2,golesV:0},"I4":{golesL:3,golesV:1},"I5":{golesL:1,golesV:2},"I6":{golesL:2,golesV:0},
+      "J1":{golesL:2,golesV:0},"J2":{golesL:3,golesV:1},"J3":{golesL:2,golesV:0},"J4":{golesL:3,golesV:1},"J5":{golesL:4,golesV:1},"J6":{golesL:1,golesV:1},
+      "K1":{golesL:2,golesV:0},"K2":{golesL:0,golesV:2},"K3":{golesL:2,golesV:0},"K4":{golesL:0,golesV:2},"K5":{golesL:1,golesV:1},"K6":{golesL:1,golesV:1},
+      "L1":{golesL:1,golesV:1},"L2":{golesL:2,golesV:0},"L3":{golesL:2,golesV:1},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:3},"L6":{golesL:1,golesV:1}
+    }
+  },
+  {
+    nombre: "Lucas Maseio",
+    pronosticos: {
+      "A1":{golesL:3,golesV:1},"A2":{golesL:1,golesV:1},"A3":{golesL:1,golesV:2},"A4":{golesL:2,golesV:1},"A5":{golesL:2,golesV:2},"A6":{golesL:3,golesV:1},
+      "B1":{golesL:1,golesV:1},"B2":{golesL:0,golesV:2},"B3":{golesL:2,golesV:0},"B4":{golesL:2,golesV:0},"B5":{golesL:1,golesV:1},"B6":{golesL:3,golesV:0},
+      "C1":{golesL:2,golesV:0},"C2":{golesL:0,golesV:2},"C3":{golesL:3,golesV:0},"C4":{golesL:1,golesV:1},"C5":{golesL:2,golesV:1},"C6":{golesL:1,golesV:1},
+      "D1":{golesL:1,golesV:1},"D2":{golesL:0,golesV:2},"D3":{golesL:2,golesV:0},"D4":{golesL:0,golesV:1},"D5":{golesL:1,golesV:0},"D6":{golesL:2,golesV:0},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:1,golesV:2},"E3":{golesL:3,golesV:0},"E4":{golesL:1,golesV:2},"E5":{golesL:4,golesV:0},"E6":{golesL:1,golesV:1},
+      "F1":{golesL:2,golesV:1},"F2":{golesL:2,golesV:1},"F3":{golesL:2,golesV:0},"F4":{golesL:1,golesV:1},"F5":{golesL:1,golesV:2},"F6":{golesL:1,golesV:2},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:1,golesV:1},"G3":{golesL:2,golesV:0},"G4":{golesL:1,golesV:1},"G5":{golesL:0,golesV:2},"G6":{golesL:2,golesV:1},
+      "H1":{golesL:3,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:2,golesV:1},"H4":{golesL:0,golesV:2},"H5":{golesL:1,golesV:2},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:2,golesV:0},"I2":{golesL:0,golesV:2},"I3":{golesL:1,golesV:0},"I4":{golesL:2,golesV:0},"I5":{golesL:2,golesV:0},"I6":{golesL:3,golesV:0},
+      "J1":{golesL:1,golesV:0},"J2":{golesL:2,golesV:0},"J3":{golesL:2,golesV:0},"J4":{golesL:1,golesV:1},"J5":{golesL:0,golesV:3},"J6":{golesL:1,golesV:2},
+      "K1":{golesL:2,golesV:0},"K2":{golesL:0,golesV:2},"K3":{golesL:3,golesV:0},"K4":{golesL:1,golesV:4},"K5":{golesL:3,golesV:0},"K6":{golesL:0,golesV:3},
+      "L1":{golesL:2,golesV:1},"L2":{golesL:2,golesV:0},"L3":{golesL:1,golesV:1},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:2},"L6":{golesL:1,golesV:1}
+    }
+  }
+];
+
+// TANDA 3
+const participantesTanda3 = [
+  {
+    nombre: "Lucas Racing",
+    pronosticos: {
+      "A1":{golesL:2,golesV:1},"A2":{golesL:2,golesV:1},"A3":{golesL:2,golesV:1},"A4":{golesL:1,golesV:1},"A5":{golesL:1,golesV:2},"A6":{golesL:1,golesV:2},
+      "B1":{golesL:2,golesV:0},"B2":{golesL:0,golesV:2},"B3":{golesL:2,golesV:0},"B4":{golesL:2,golesV:0},"B5":{golesL:2,golesV:1},"B6":{golesL:2,golesV:0},
+      "C1":{golesL:2,golesV:0},"C2":{golesL:0,golesV:2},"C3":{golesL:2,golesV:0},"C4":{golesL:2,golesV:1},"C5":{golesL:1,golesV:2},"C6":{golesL:1,golesV:1},
+      "D1":{golesL:1,golesV:2},"D2":{golesL:0,golesV:2},"D3":{golesL:2,golesV:1},"D4":{golesL:0,golesV:2},"D5":{golesL:1,golesV:2},"D6":{golesL:2,golesV:0},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:1,golesV:2},"E3":{golesL:2,golesV:1},"E4":{golesL:0,golesV:2},"E5":{golesL:0,golesV:2},"E6":{golesL:0,golesV:2},
+      "F1":{golesL:2,golesV:1},"F2":{golesL:2,golesV:0},"F3":{golesL:2,golesV:1},"F4":{golesL:2,golesV:0},"F5":{golesL:0,golesV:2},"F6":{golesL:0,golesV:2},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:0,golesV:1},"G3":{golesL:2,golesV:0},"G4":{golesL:1,golesV:1},"G5":{golesL:1,golesV:1},"G6":{golesL:0,golesV:2},
+      "H1":{golesL:2,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:2,golesV:0},"H4":{golesL:0,golesV:2},"H5":{golesL:0,golesV:2},"H6":{golesL:1,golesV:1},
+      "I1":{golesL:2,golesV:0},"I2":{golesL:0,golesV:2},"I3":{golesL:3,golesV:0},"I4":{golesL:1,golesV:2},"I5":{golesL:0,golesV:2},"I6":{golesL:1,golesV:0},
+      "J1":{golesL:2,golesV:0},"J2":{golesL:2,golesV:0},"J3":{golesL:1,golesV:1},"J4":{golesL:2,golesV:0},"J5":{golesL:0,golesV:2},"J6":{golesL:0,golesV:2},
+      "K1":{golesL:3,golesV:0},"K2":{golesL:1,golesV:2},"K3":{golesL:2,golesV:0},"K4":{golesL:0,golesV:2},"K5":{golesL:0,golesV:2},"K6":{golesL:0,golesV:1},
+      "L1":{golesL:2,golesV:1},"L2":{golesL:2,golesV:0},"L3":{golesL:2,golesV:1},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:3},"L6":{golesL:2,golesV:1}
+    }
+  },
+  {
+    nombre: "Luis",
+    pronosticos: {
+      "A1":{golesL:2,golesV:1},"A2":{golesL:1,golesV:1},"A3":{golesL:1,golesV:0},"A4":{golesL:1,golesV:0},"A5":{golesL:2,golesV:0},"A6":{golesL:0,golesV:1},
+      "B1":{golesL:1,golesV:2},"B2":{golesL:2,golesV:2},"B3":{golesL:2,golesV:0},"B4":{golesL:1,golesV:1},"B5":{golesL:2,golesV:0},"B6":{golesL:1,golesV:0},
+      "C1":{golesL:1,golesV:2},"C2":{golesL:0,golesV:3},"C3":{golesL:6,golesV:0},"C4":{golesL:1,golesV:3},"C5":{golesL:1,golesV:4},"C6":{golesL:6,golesV:0},
+      "D1":{golesL:1,golesV:2},"D2":{golesL:1,golesV:2},"D3":{golesL:2,golesV:0},"D4":{golesL:0,golesV:2},"D5":{golesL:1,golesV:1},"D6":{golesL:2,golesV:0},
+      "E1":{golesL:1,golesV:0},"E2":{golesL:2,golesV:2},"E3":{golesL:2,golesV:0},"E4":{golesL:0,golesV:4},"E5":{golesL:1,golesV:3},"E6":{golesL:0,golesV:2},
+      "F1":{golesL:2,golesV:1},"F2":{golesL:2,golesV:0},"F3":{golesL:2,golesV:0},"F4":{golesL:2,golesV:0},"F5":{golesL:0,golesV:2},"F6":{golesL:2,golesV:0},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:1,golesV:1},"G3":{golesL:3,golesV:0},"G4":{golesL:1,golesV:0},"G5":{golesL:1,golesV:0},"G6":{golesL:0,golesV:2},
+      "H1":{golesL:3,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:3,golesV:0},"H4":{golesL:1,golesV:3},"H5":{golesL:1,golesV:2},"H6":{golesL:1,golesV:2},
+      "I1":{golesL:2,golesV:2},"I2":{golesL:0,golesV:2},"I3":{golesL:2,golesV:0},"I4":{golesL:2,golesV:2},"I5":{golesL:2,golesV:3},"I6":{golesL:1,golesV:1},
+      "J1":{golesL:1,golesV:1},"J2":{golesL:2,golesV:0},"J3":{golesL:1,golesV:1},"J4":{golesL:3,golesV:0},"J5":{golesL:0,golesV:3},"J6":{golesL:1,golesV:1},
+      "K1":{golesL:5,golesV:0},"K2":{golesL:1,golesV:4},"K3":{golesL:3,golesV:0},"K4":{golesL:0,golesV:3},"K5":{golesL:1,golesV:3},"K6":{golesL:1,golesV:1},
+      "L1":{golesL:2,golesV:0},"L2":{golesL:2,golesV:0},"L3":{golesL:1,golesV:1},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:2},"L6":{golesL:1,golesV:1}
+    }
+  },
+  {
+    nombre: "Martín L.",
+    pronosticos: {
+      "A1":{golesL:2,golesV:1},"A2":{golesL:2,golesV:1},"A3":{golesL:1,golesV:2},"A4":{golesL:1,golesV:0},"A5":{golesL:1,golesV:2},"A6":{golesL:1,golesV:2},
+      "B1":{golesL:2,golesV:1},"B2":{golesL:2,golesV:1},"B3":{golesL:1,golesV:0},"B4":{golesL:1,golesV:1},"B5":{golesL:1,golesV:0},"B6":{golesL:1,golesV:0},
+      "C1":{golesL:1,golesV:2},"C2":{golesL:1,golesV:2},"C3":{golesL:3,golesV:0},"C4":{golesL:1,golesV:2},"C5":{golesL:1,golesV:2},"C6":{golesL:3,golesV:1},
+      "D1":{golesL:0,golesV:2},"D2":{golesL:1,golesV:2},"D3":{golesL:0,golesV:2},"D4":{golesL:0,golesV:1},"D5":{golesL:2,golesV:1},"D6":{golesL:2,golesV:1},
+      "E1":{golesL:2,golesV:0},"E2":{golesL:1,golesV:2},"E3":{golesL:2,golesV:0},"E4":{golesL:1,golesV:3},"E5":{golesL:2,golesV:0},"E6":{golesL:1,golesV:1},
+      "F1":{golesL:2,golesV:0},"F2":{golesL:1,golesV:2},"F3":{golesL:1,golesV:2},"F4":{golesL:2,golesV:1},"F5":{golesL:2,golesV:0},"F6":{golesL:2,golesV:0},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:2,golesV:1},"G3":{golesL:2,golesV:1},"G4":{golesL:2,golesV:0},"G5":{golesL:2,golesV:0},"G6":{golesL:1,golesV:3},
+      "H1":{golesL:3,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:3,golesV:1},"H4":{golesL:0,golesV:2},"H5":{golesL:0,golesV:2},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:2,golesV:2},"I2":{golesL:0,golesV:2},"I3":{golesL:2,golesV:0},"I4":{golesL:1,golesV:2},"I5":{golesL:1,golesV:2},"I6":{golesL:2,golesV:0},
+      "J1":{golesL:1,golesV:1},"J2":{golesL:2,golesV:1},"J3":{golesL:2,golesV:1},"J4":{golesL:0,golesV:2},"J5":{golesL:1,golesV:2},"J6":{golesL:0,golesV:1},
+      "K1":{golesL:2,golesV:0},"K2":{golesL:0,golesV:3},"K3":{golesL:2,golesV:0},"K4":{golesL:2,golesV:2},"K5":{golesL:2,golesV:0},"K6":{golesL:1,golesV:1},
+      "L1":{golesL:1,golesV:2},"L2":{golesL:2,golesV:2},"L3":{golesL:2,golesV:2},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:2},"L6":{golesL:2,golesV:1}
+    }
+  },
+  {
+    nombre: "Pablo Dym.",
+    pronosticos: {
+      "A1":{golesL:2,golesV:0},"A2":{golesL:1,golesV:0},"A3":{golesL:1,golesV:1},"A4":{golesL:1,golesV:1},"A5":{golesL:1,golesV:2},"A6":{golesL:0,golesV:2},
+      "B1":{golesL:2,golesV:1},"B2":{golesL:0,golesV:2},"B3":{golesL:2,golesV:0},"B4":{golesL:2,golesV:0},"B5":{golesL:2,golesV:1},"B6":{golesL:1,golesV:0},
+      "C1":{golesL:2,golesV:0},"C2":{golesL:0,golesV:2},"C3":{golesL:3,golesV:0},"C4":{golesL:1,golesV:1},"C5":{golesL:1,golesV:2},"C6":{golesL:2,golesV:0},
+      "D1":{golesL:1,golesV:1},"D2":{golesL:0,golesV:2},"D3":{golesL:2,golesV:0},"D4":{golesL:1,golesV:2},"D5":{golesL:2,golesV:1},"D6":{golesL:2,golesV:0},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:1,golesV:2},"E3":{golesL:2,golesV:0},"E4":{golesL:0,golesV:2},"E5":{golesL:1,golesV:2},"E6":{golesL:1,golesV:2},
+      "F1":{golesL:2,golesV:1},"F2":{golesL:2,golesV:1},"F3":{golesL:2,golesV:0},"F4":{golesL:1,golesV:1},"F5":{golesL:0,golesV:2},"F6":{golesL:1,golesV:2},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:1,golesV:1},"G3":{golesL:3,golesV:1},"G4":{golesL:1,golesV:0},"G5":{golesL:1,golesV:2},"G6":{golesL:1,golesV:2},
+      "H1":{golesL:3,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:2,golesV:0},"H4":{golesL:0,golesV:2},"H5":{golesL:1,golesV:2},"H6":{golesL:0,golesV:1},
+      "I1":{golesL:2,golesV:0},"I2":{golesL:0,golesV:2},"I3":{golesL:3,golesV:0},"I4":{golesL:2,golesV:1},"I5":{golesL:1,golesV:2},"I6":{golesL:2,golesV:1},
+      "J1":{golesL:1,golesV:0},"J2":{golesL:2,golesV:0},"J3":{golesL:2,golesV:1},"J4":{golesL:1,golesV:2},"J5":{golesL:0,golesV:3},"J6":{golesL:1,golesV:2},
+      "K1":{golesL:2,golesV:0},"K2":{golesL:0,golesV:2},"K3":{golesL:3,golesV:1},"K4":{golesL:0,golesV:2},"K5":{golesL:2,golesV:1},"K6":{golesL:1,golesV:1},
+      "L1":{golesL:2,golesV:1},"L2":{golesL:2,golesV:0},"L3":{golesL:2,golesV:0},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:2},"L6":{golesL:1,golesV:1}
+    }
+  },
+  {
+    nombre: "Pablo Muchnik",
+    pronosticos: {
+      "A1":{golesL:3,golesV:1},"A2":{golesL:2,golesV:1},"A3":{golesL:1,golesV:2},"A4":{golesL:2,golesV:1},"A5":{golesL:1,golesV:3},"A6":{golesL:1,golesV:3},
+      "B1":{golesL:2,golesV:1},"B2":{golesL:0,golesV:2},"B3":{golesL:3,golesV:1},"B4":{golesL:2,golesV:0},"B5":{golesL:2,golesV:1},"B6":{golesL:1,golesV:0},
+      "C1":{golesL:2,golesV:0},"C2":{golesL:0,golesV:2},"C3":{golesL:4,golesV:0},"C4":{golesL:1,golesV:2},"C5":{golesL:1,golesV:3},"C6":{golesL:2,golesV:0},
+      "D1":{golesL:1,golesV:1},"D2":{golesL:0,golesV:2},"D3":{golesL:2,golesV:0},"D4":{golesL:1,golesV:3},"D5":{golesL:2,golesV:1},"D6":{golesL:3,golesV:0},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:1,golesV:2},"E3":{golesL:3,golesV:1},"E4":{golesL:0,golesV:2},"E5":{golesL:1,golesV:2},"E6":{golesL:1,golesV:2},
+      "F1":{golesL:3,golesV:1},"F2":{golesL:2,golesV:1},"F3":{golesL:2,golesV:0},"F4":{golesL:1,golesV:1},"F5":{golesL:0,golesV:3},"F6":{golesL:1,golesV:2},
+      "G1":{golesL:3,golesV:0},"G2":{golesL:1,golesV:1},"G3":{golesL:3,golesV:1},"G4":{golesL:1,golesV:0},"G5":{golesL:1,golesV:3},"G6":{golesL:2,golesV:1},
+      "H1":{golesL:3,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:2,golesV:0},"H4":{golesL:0,golesV:2},"H5":{golesL:1,golesV:2},"H6":{golesL:0,golesV:2},
+      "I1":{golesL:2,golesV:0},"I2":{golesL:0,golesV:2},"I3":{golesL:3,golesV:1},"I4":{golesL:2,golesV:1},"I5":{golesL:1,golesV:3},"I6":{golesL:2,golesV:1},
+      "J1":{golesL:2,golesV:0},"J2":{golesL:3,golesV:1},"J3":{golesL:2,golesV:0},"J4":{golesL:1,golesV:2},"J5":{golesL:0,golesV:3},"J6":{golesL:1,golesV:2},
+      "K1":{golesL:2,golesV:0},"K2":{golesL:0,golesV:2},"K3":{golesL:3,golesV:1},"K4":{golesL:1,golesV:2},"K5":{golesL:2,golesV:1},"K6":{golesL:0,golesV:1},
+      "L1":{golesL:2,golesV:1},"L2":{golesL:2,golesV:0},"L3":{golesL:3,golesV:1},"L4":{golesL:2,golesV:0},"L5":{golesL:0,golesV:2},"L6":{golesL:1,golesV:2}
+    }
+  },
+  {
+    nombre: "Ricardo",
+    pronosticos: {
+      "A1":{golesL:2,golesV:0},"A2":{golesL:1,golesV:1},"A3":{golesL:1,golesV:1},"A4":{golesL:2,golesV:1},"A5":{golesL:1,golesV:2},"A6":{golesL:1,golesV:2},
+      "B1":{golesL:2,golesV:1},"B2":{golesL:0,golesV:2},"B3":{golesL:2,golesV:0},"B4":{golesL:1,golesV:1},"B5":{golesL:1,golesV:1},"B6":{golesL:2,golesV:1},
+      "C1":{golesL:3,golesV:1},"C2":{golesL:0,golesV:2},"C3":{golesL:2,golesV:0},"C4":{golesL:1,golesV:1},"C5":{golesL:1,golesV:2},"C6":{golesL:3,golesV:0},
+      "D1":{golesL:2,golesV:1},"D2":{golesL:1,golesV:2},"D3":{golesL:1,golesV:1},"D4":{golesL:2,golesV:0},"D5":{golesL:2,golesV:1},"D6":{golesL:1,golesV:2},
+      "E1":{golesL:3,golesV:0},"E2":{golesL:1,golesV:2},"E3":{golesL:2,golesV:1},"E4":{golesL:0,golesV:2},"E5":{golesL:2,golesV:0},"E6":{golesL:1,golesV:1},
+      "F1":{golesL:2,golesV:1},"F2":{golesL:2,golesV:0},"F3":{golesL:2,golesV:0},"F4":{golesL:2,golesV:1},"F5":{golesL:1,golesV:2},"F6":{golesL:0,golesV:2},
+      "G1":{golesL:2,golesV:0},"G2":{golesL:1,golesV:1},"G3":{golesL:2,golesV:1},"G4":{golesL:2,golesV:1},"G5":{golesL:3,golesV:0},"G6":{golesL:1,golesV:0},
+      "H1":{golesL:3,golesV:0},"H2":{golesL:1,golesV:2},"H3":{golesL:2,golesV:1},"H4":{golesL:1,golesV:1},"H5":{golesL:2,golesV:0},"H6":{golesL:1,golesV:2},
+      "I1":{golesL:2,golesV:0},"I2":{golesL:0,golesV:3},"I3":{golesL:2,golesV:1},"I4":{golesL:2,golesV:0},"I5":{golesL:2,golesV:2},"I6":{golesL:3,golesV:0},
+      "J1":{golesL:3,golesV:0},"J2":{golesL:2,golesV:0},"J3":{golesL:2,golesV:1},"J4":{golesL:2,golesV:1},"J5":{golesL:1,golesV:1},"J6":{golesL:0,golesV:2},
+      "K1":{golesL:2,golesV:0},"K2":{golesL:1,golesV:2},"K3":{golesL:2,golesV:1},"K4":{golesL:1,golesV:1},"K5":{golesL:2,golesV:0},"K6":{golesL:0,golesV:2},
+      "L1":{golesL:2,golesV:1},"L2":{golesL:2,golesV:1},"L3":{golesL:3,golesV:1},"L4":{golesL:2,golesV:0},"L5":{golesL:1,golesV:1},"L6":{golesL:0,golesV:2}
+    }
+  }
+];
+
+// UNIFICAR TODOS LOS PARTICIPANTES
+const participantes = [...participantesTanda1, ...participantesTanda2, ...participantesTanda3];
+
 /* ============================================================
-   DATOS: RESULTADOS INICIALES (SE ACTUALIZAN CON API)
+   DATOS: RESULTADOS INICIALES (TODOS LOS PARTIDOS - 72 PARTIDOS)
    ============================================================ */
 
-const resultadosIniciales = {
-  "A1": { local: "México", visitante: "Sudáfrica", golesL: 2, golesV: 0, jugado: true },
-  "A2": { local: "Corea del Sur", visitante: "Rep. Checa", golesL: 1, golesV: 0, jugado: true },
-  "A3": { local: "Rep. Checa", visitante: "Sudáfrica", golesL: 2, golesV: 1, jugado: true },
-  "A4": { local: "México", visitante: "Corea del Sur", golesL: 1, golesV: 0, jugado: true },
-  "A5": { local: "Rep. Checa", visitante: "México", golesL: 0, golesV: 0, jugado: true },
-  "A6": { local: "Sudáfrica", visitante: "Corea del Sur", golesL: 0, golesV: 1, jugado: true },
-  "B1": { local: "Canadá", visitante: "Bosnia", golesL: 1, golesV: 0, jugado: true },
-  "B2": { local: "Catar", visitante: "Suiza", golesL: 0, golesV: 3, jugado: true },
-  "B3": { local: "Suiza", visitante: "Bosnia", golesL: 2, golesV: 2, jugado: true },
-  "B4": { local: "Canadá", visitante: "Catar", golesL: 6, golesV: 1, jugado: true },
-  "B5": { local: "Suiza", visitante: "Canadá", golesL: 0, golesV: 0, jugado: true },
-  "B6": { local: "Bosnia", visitante: "Catar", golesL: 0, golesV: 0, jugado: true },
-  "C1": { local: "Brasil", visitante: "Marruecos", golesL: 2, golesV: 1, jugado: true },
-  "C2": { local: "Haití", visitante: "Escocia", golesL: 0, golesV: 1, jugado: true },
-  "C3": { local: "Brasil", visitante: "Haití", golesL: 2, golesV: 0, jugado: true },
-  "C4": { local: "Escocia", visitante: "Marruecos", golesL: 0, golesV: 1, jugado: true },
-  "C5": { local: "Escocia", visitante: "Brasil", golesL: 0, golesV: 0, jugado: true },
-  "C6": { local: "Marruecos", visitante: "Haití", golesL: 0, golesV: 0, jugado: true },
-  "D1": { local: "EE. UU.", visitante: "Paraguay", golesL: 2, golesV: 1, jugado: true },
-  "D2": { local: "Australia", visitante: "Turquía", golesL: 2, golesV: 0, jugado: true },
-  "D3": { local: "EE. UU.", visitante: "Australia", golesL: 4, golesV: 0, jugado: true },
-  "D4": { local: "Turquía", visitante: "Paraguay", golesL: 3, golesV: 1, jugado: true },
-  "D5": { local: "Turquía", visitante: "EE. UU.", golesL: 0, golesV: 0, jugado: true },
-  "D6": { local: "Paraguay", visitante: "Australia", golesL: 0, golesV: 0, jugado: true },
-  "E1": { local: "Alemania", visitante: "Curazao", golesL: 7, golesV: 1, jugado: true },
-  "E2": { local: "C. Marfil", visitante: "Ecuador", golesL: 1, golesV: 0, jugado: true },
-  "E3": { local: "Alemania", visitante: "C. Marfil", golesL: null, golesV: null, jugado: false },
-  "E4": { local: "Curazao", visitante: "Ecuador", golesL: null, golesV: null, jugado: false },
-  "E5": { local: "Ecuador", visitante: "Alemania", golesL: null, golesV: null, jugado: false },
-  "E6": { local: "Curazao", visitante: "C. Marfil", golesL: null, golesV: null, jugado: false },
-  "F1": { local: "P. Bajos", visitante: "Japón", golesL: 2, golesV: 2, jugado: true },
-  "F2": { local: "Suecia", visitante: "Túnez", golesL: 5, golesV: 1, jugado: true },
-  "F3": { local: "P. Bajos", visitante: "Suecia", golesL: null, golesV: null, jugado: false },
-  "F4": { local: "Japón", visitante: "Túnez", golesL: null, golesV: null, jugado: false },
-  "F5": { local: "Túnez", visitante: "P. Bajos", golesL: null, golesV: null, jugado: false },
-  "F6": { local: "Japón", visitante: "Suecia", golesL: null, golesV: null, jugado: false },
-  "G1": { local: "Bélgica", visitante: "Egipto", golesL: 1, golesV: 1, jugado: true },
-  "G2": { local: "Irán", visitante: "N. Zelanda", golesL: 2, golesV: 2, jugado: true },
-  "G3": { local: "Bélgica", visitante: "Irán", golesL: null, golesV: null, jugado: false },
-  "G4": { local: "Egipto", visitante: "N. Zelanda", golesL: null, golesV: null, jugado: false },
-  "G5": { local: "N. Zelanda", visitante: "Bélgica", golesL: null, golesV: null, jugado: false },
-  "G6": { local: "Egipto", visitante: "Irán", golesL: null, golesV: null, jugado: false },
-  "H1": { local: "España", visitante: "C. Verde", golesL: 0, golesV: 0, jugado: true },
-  "H2": { local: "Arabia S.", visitante: "Uruguay", golesL: 1, golesV: 1, jugado: true },
-  "H3": { local: "España", visitante: "Arabia S.", golesL: null, golesV: null, jugado: false },
-  "H4": { local: "C. Verde", visitante: "Uruguay", golesL: null, golesV: null, jugado: false },
-  "H5": { local: "Uruguay", visitante: "España", golesL: null, golesV: null, jugado: false },
-  "H6": { local: "C. Verde", visitante: "Arabia S.", golesL: null, golesV: null, jugado: false },
-  "I1": { local: "Francia", visitante: "Senegal", golesL: 3, golesV: 1, jugado: true },
-  "I2": { local: "Irak", visitante: "Noruega", golesL: 3, golesV: 4, jugado: true },
-  "I3": { local: "Francia", visitante: "Irak", golesL: null, golesV: null, jugado: false },
-  "I4": { local: "Senegal", visitante: "Noruega", golesL: null, golesV: null, jugado: false },
-  "I5": { local: "Noruega", visitante: "Francia", golesL: null, golesV: null, jugado: false },
-  "I6": { local: "Senegal", visitante: "Irak", golesL: null, golesV: null, jugado: false },
-  "J1": { local: "Austria", visitante: "Jordania", golesL: 3, golesV: 1, jugado: true },
-  "J2": { local: "Argentina", visitante: "Argelia", golesL: 3, golesV: 0, jugado: true },
-  "J3": { local: "Argentina", visitante: "Austria", golesL: null, golesV: null, jugado: false },
-  "J4": { local: "Argelia", visitante: "Jordania", golesL: null, golesV: null, jugado: false },
-  "J5": { local: "Jordania", visitante: "Argentina", golesL: null, golesV: null, jugado: false },
-  "J6": { local: "Argelia", visitante: "Austria", golesL: null, golesV: null, jugado: false },
-  "K1": { local: "Portugal", visitante: "RD Congo", golesL: 1, golesV: 1, jugado: true },
-  "K2": { local: "Uzbekistán", visitante: "Colombia", golesL: 1, golesV: 3, jugado: true },
-  "K3": { local: "Portugal", visitante: "Uzbekistán", golesL: null, golesV: null, jugado: false },
-  "K4": { local: "RD Congo", visitante: "Colombia", golesL: null, golesV: null, jugado: false },
-  "K5": { local: "Colombia", visitante: "Portugal", golesL: null, golesV: null, jugado: false },
-  "K6": { local: "RD Congo", visitante: "Uzbekistán", golesL: null, golesV: null, jugado: false },
-  "L1": { local: "Inglaterra", visitante: "Croacia", golesL: 4, golesV: 2, jugado: true },
-  "L2": { local: "Ghana", visitante: "Panamá", golesL: 1, golesV: 0, jugado: true },
-  "L3": { local: "Inglaterra", visitante: "Ghana", golesL: null, golesV: null, jugado: false },
-  "L4": { local: "Croacia", visitante: "Panamá", golesL: null, golesV: null, jugado: false },
-  "L5": { local: "Panamá", visitante: "Inglaterra", golesL: null, golesV: null, jugado: false },
-  "L6": { local: "Croacia", visitante: "Ghana", golesL: null, golesV: null, jugado: false }
+const resultadosIniciales = {};
+
+// Generar todos los partidos (A1-L6)
+const grupos = ['A','B','C','D','E','F','G','H','I','J','K','L'];
+const equiposPorGrupo = {
+  'A': ['México', 'Sudáfrica', 'Corea del Sur', 'Rep. Checa'],
+  'B': ['Canadá', 'Bosnia', 'Catar', 'Suiza'],
+  'C': ['Brasil', 'Marruecos', 'Haití', 'Escocia'],
+  'D': ['EE. UU.', 'Paraguay', 'Australia', 'Turquía'],
+  'E': ['Alemania', 'Curazao', 'C. Marfil', 'Ecuador'],
+  'F': ['P. Bajos', 'Japón', 'Suecia', 'Túnez'],
+  'G': ['Bélgica', 'Egipto', 'Irán', 'N. Zelanda'],
+  'H': ['España', 'C. Verde', 'Arabia S.', 'Uruguay'],
+  'I': ['Francia', 'Senegal', 'Irak', 'Noruega'],
+  'J': ['Austria', 'Jordania', 'Argentina', 'Argelia'],
+  'K': ['Portugal', 'RD Congo', 'Uzbekistán', 'Colombia'],
+  'L': ['Inglaterra', 'Croacia', 'Ghana', 'Panamá']
 };
 
+// Partidos de cada grupo (formato round-robin)
+const partidosPorGrupo = {
+  'A': [['México','Sudáfrica'],['Corea del Sur','Rep. Checa'],['Rep. Checa','Sudáfrica'],['México','Corea del Sur'],['Rep. Checa','México'],['Sudáfrica','Corea del Sur']],
+  'B': [['Canadá','Bosnia'],['Catar','Suiza'],['Suiza','Bosnia'],['Canadá','Catar'],['Suiza','Canadá'],['Bosnia','Catar']],
+  'C': [['Brasil','Marruecos'],['Haití','Escocia'],['Brasil','Haití'],['Escocia','Marruecos'],['Escocia','Brasil'],['Marruecos','Haití']],
+  'D': [['EE. UU.','Paraguay'],['Australia','Turquía'],['EE. UU.','Australia'],['Turquía','Paraguay'],['Turquía','EE. UU.'],['Paraguay','Australia']],
+  'E': [['Alemania','Curazao'],['C. Marfil','Ecuador'],['Alemania','C. Marfil'],['Curazao','Ecuador'],['Ecuador','Alemania'],['Curazao','C. Marfil']],
+  'F': [['P. Bajos','Japón'],['Suecia','Túnez'],['P. Bajos','Suecia'],['Japón','Túnez'],['Túnez','P. Bajos'],['Japón','Suecia']],
+  'G': [['Bélgica','Egipto'],['Irán','N. Zelanda'],['Bélgica','Irán'],['Egipto','N. Zelanda'],['N. Zelanda','Bélgica'],['Egipto','Irán']],
+  'H': [['España','C. Verde'],['Arabia S.','Uruguay'],['España','Arabia S.'],['C. Verde','Uruguay'],['Uruguay','España'],['C. Verde','Arabia S.']],
+  'I': [['Francia','Senegal'],['Irak','Noruega'],['Francia','Irak'],['Senegal','Noruega'],['Noruega','Francia'],['Senegal','Irak']],
+  'J': [['Austria','Jordania'],['Argentina','Argelia'],['Argentina','Austria'],['Argelia','Jordania'],['Jordania','Argentina'],['Argelia','Austria']],
+  'K': [['Portugal','RD Congo'],['Uzbekistán','Colombia'],['Portugal','Uzbekistán'],['RD Congo','Colombia'],['Colombia','Portugal'],['RD Congo','Uzbekistán']],
+  'L': [['Inglaterra','Croacia'],['Ghana','Panamá'],['Inglaterra','Ghana'],['Croacia','Panamá'],['Panamá','Inglaterra'],['Croacia','Ghana']]
+};
+
+// Construir resultadosIniciales
+grupos.forEach(g => {
+  const partidos = partidosPorGrupo[g];
+  partidos.forEach(([local, visitante], idx) => {
+    const id = `${g}${idx + 1}`;
+    resultadosIniciales[id] = {
+      local: local,
+      visitante: visitante,
+      golesL: null,
+      golesV: null,
+      jugado: false
+    };
+  });
+});
+
 /* ============================================================
-   SISTEMA DE ACTUALIZACIÓN CON API
+   SISTEMA DE ACTUALIZACIÓN
    ============================================================ */
 
-// Estado mutable de resultados
 let resultadosActuales = JSON.parse(JSON.stringify(resultadosIniciales));
 const puntajesCache = new Map();
 let actualizando = false;
-const GRUPOS_LISTA = ["A","B","C","D","E","F","G","H","I","J","K","L"];
-const MEDALLAS_LISTA = ["🥇","🥈","🥉"];
+const GRUPOS_LISTA = ['A','B','C','D','E','F','G','H','I','J','K','L'];
+const MEDALLAS_LISTA = ['🥇','🥈','🥉'];
 let tablaOrdenada = [];
 let ultimaActualizacionAPI = null;
-let estadoAPI = 'checking'; // 'online', 'offline', 'checking'
+let estadoAPI = 'checking';
 
-// === CONFIGURACIÓN DE LA API ===
+// === CONFIGURACIÓN API ===
 const API_CONFIG = {
   url: 'https://worldcup26.ir/get/games',
-  timeout: 10000, // 10 segundos
-  intervalo: 60000 // 60 segundos
+  timeout: 10000,
+  intervalo: 60000
 };
-
-// === FUNCIÓN PARA ACTUALIZAR ESTADO DE API ===
-function actualizarEstadoAPI(estado, mensaje = '') {
-  estadoAPI = estado;
-  const statusEl = document.getElementById('apiStatus');
-  const dotEl = document.getElementById('statusDot');
-  
-  if (estado === 'online') {
-    statusEl.className = 'text-[10px] px-2 py-0.5 rounded-full bg-[var(--green)]/20 text-[var(--green)] font-semibold';
-    statusEl.textContent = `API: Online ${mensaje}`;
-    dotEl.className = 'w-2 h-2 rounded-full bg-[var(--green)] pulse-dot';
-  } else if (estado === 'offline') {
-    statusEl.className = 'text-[10px] px-2 py-0.5 rounded-full bg-[var(--red)]/20 text-[var(--red)] font-semibold';
-    statusEl.textContent = `API: Offline ${mensaje}`;
-    dotEl.className = 'w-2 h-2 rounded-full bg-[var(--red)]';
-  } else {
-    statusEl.className = 'text-[10px] px-2 py-0.5 rounded-full bg-[var(--gold)]/20 text-[var(--gold)] font-semibold';
-    statusEl.textContent = `API: Conectando...`;
-    dotEl.className = 'w-2 h-2 rounded-full bg-[var(--gold)] pulse-dot';
-  }
-}
-
-// === FUNCIÓN PARA OBTENER RESULTADOS DESDE LA API ===
-async function obtenerResultadosDesdeAPI() {
-  try {
-    actualizarEstadoAPI('checking');
-    
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.timeout);
-    
-    const respuesta = await fetch(API_CONFIG.url, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (compatible; ProdeApp/1.0)'
-      },
-      signal: controller.signal
-    });
-    
-    clearTimeout(timeoutId);
-    
-    if (!respuesta.ok) {
-      throw new Error(`HTTP ${respuesta.status}`);
-    }
-    
-    const datos = await respuesta.json();
-    console.log('📡 Datos recibidos de API:', datos);
-    
-    // Procesar los datos de la API
-    const actualizaciones = procesarDatosAPI(datos);
-    
-    if (Object.keys(actualizaciones).length > 0) {
-      actualizarResultados(actualizaciones);
-      ultimaActualizacionAPI = new Date();
-      document.getElementById('ultimaActualizacionAPI').textContent = 
-        `Última API: ${ultimaActualizacionAPI.toLocaleTimeString()}`;
-      actualizarEstadoAPI('online', `• ${Object.keys(actualizaciones).length} partidos`);
-    } else {
-      actualizarEstadoAPI('online', '• Sin cambios');
-    }
-    
-  } catch (error) {
-    if (error.name === 'AbortError') {
-      console.warn('⏰ Timeout al obtener resultados');
-      actualizarEstadoAPI('offline', '• Timeout');
-    } else {
-      console.error('❌ Error al obtener resultados:', error);
-      actualizarEstadoAPI('offline', '• Error');
-    }
-  }
-}
-
-// === PROCESAR DATOS DE LA API ===
-function procesarDatosAPI(datos) {
-  const actualizaciones = {};
-  
-  try {
-    // La API devuelve los partidos en diferentes formatos posibles
-    let partidos = [];
-    
-    if (datos.games && Array.isArray(datos.games)) {
-      partidos = datos.games;
-    } else if (datos.matches && Array.isArray(datos.matches)) {
-      partidos = datos.matches;
-    } else if (datos.data && Array.isArray(datos.data)) {
-      partidos = datos.data;
-    } else if (Array.isArray(datos)) {
-      partidos = datos;
-    }
-    
-    if (partidos.length === 0) {
-      console.warn('⚠️ No se encontraron partidos en la respuesta');
-      return actualizaciones;
-    }
-    
-    // Mapear IDs de partidos de la API a nuestros IDs
-    // Usamos un mapa flexible para encontrar coincidencias
-    partidos.forEach(partido => {
-      // Intentar encontrar el ID del partido
-      let id = null;
-      let local = null;
-      let visitante = null;
-      let golesL = null;
-      let golesV = null;
-      let jugado = false;
-      let estado = '';
-      
-      // Extraer información según el formato de la API
-      id = partido.id || partido.matchId || partido.gameId || partido._id;
-      
-      // Extraer equipos
-      if (partido.homeTeam) {
-        local = partido.homeTeam.name || partido.homeTeam;
-      } else if (partido.home_team) {
-        local = partido.home_team.name || partido.home_team;
-      } else if (partido.team1) {
-        local = partido.team1;
-      }
-      
-      if (partido.awayTeam) {
-        visitante = partido.awayTeam.name || partido.awayTeam;
-      } else if (partido.away_team) {
-        visitante = partido.away_team.name || partido.away_team;
-      } else if (partido.team2) {
-        visitante = partido.team2;
-      }
-      
-      // Extraer goles
-      if (partido.score) {
-        if (partido.score.fullTime) {
-          golesL = partido.score.fullTime.home !== undefined ? partido.score.fullTime.home : null;
-          golesV = partido.score.fullTime.away !== undefined ? partido.score.fullTime.away : null;
-        } else if (partido.score.home !== undefined) {
-          golesL = partido.score.home;
-          golesV = partido.score.away;
-        }
-      } else if (partido.homeScore !== undefined) {
-        golesL = partido.homeScore;
-        golesV = partido.awayScore;
-      } else if (partido.goalsHome !== undefined) {
-        golesL = partido.goalsHome;
-        golesV = partido.goalsAway;
-      }
-      
-      // Extraer estado
-      estado = partido.status || partido.matchStatus || partido.state || '';
-      
-      // Determinar si el partido está jugado
-      if (estado === 'FINISHED' || estado === 'FINAL' || estado === 'FT' || 
-          estado === 'COMPLETED' || estado === 'PLAYED' || estado === 'played' ||
-          (golesL !== null && golesV !== null && (estado === '' || estado === 'finished'))) {
-        jugado = true;
-      }
-      
-      // Si tenemos la información mínima, procesar
-      if (id && local && visitante && golesL !== null && golesV !== null && jugado) {
-        // Buscar si tenemos este partido en nuestros datos
-        const matchId = id.toString().toUpperCase();
-        
-        // Intentar encontrar por ID exacto o buscar por equipos
-        let foundId = null;
-        
-        // Primero buscar por ID exacto
-        if (resultadosActuales[matchId]) {
-          foundId = matchId;
-        } else {
-          // Buscar por coincidencia de equipos
-          for (const [key, value] of Object.entries(resultadosActuales)) {
-            if (value.local === local && value.visitante === visitante) {
-              foundId = key;
-              break;
-            }
-          }
-        }
-        
-        if (foundId) {
-          actualizaciones[foundId] = {
-            local: local,
-            visitante: visitante,
-            golesL: golesL,
-            golesV: golesV,
-            jugado: true
-          };
-          
-          console.log(`✅ Partido encontrado: ${foundId} → ${local} ${golesL}-${golesV} ${visitante}`);
-        }
-      }
-    });
-    
-  } catch (error) {
-    console.error('Error procesando datos de API:', error);
-  }
-  
-  return actualizaciones;
-}
 
 // === FUNCIONES DE PUNTUACIÓN ===
 function calcularPuntaje(partidoId, pred, real) {
   const cacheKey = `${partidoId}-${JSON.stringify(pred)}-${JSON.stringify(real)}`;
-  
-  if (puntajesCache.has(cacheKey)) {
-    return puntajesCache.get(cacheKey);
-  }
+  if (puntajesCache.has(cacheKey)) return puntajesCache.get(cacheKey);
   
   let resultado = null;
   try {
@@ -576,14 +649,12 @@ function calcularPuntaje(partidoId, pred, real) {
   } catch (e) {
     resultado = null;
   }
-  
   puntajesCache.set(cacheKey, resultado);
   return resultado;
 }
 
 function calcularResumen(p) {
   let total = 0, exactos = 0, tendencia = 0, errores = 0;
-  
   Object.keys(p.pronosticos).forEach(id => {
     const real = resultadosActuales[id];
     const pts = calcularPuntaje(id, p.pronosticos[id], real);
@@ -593,24 +664,18 @@ function calcularResumen(p) {
     else if (pts === 1) tendencia++;
     else errores++;
   });
-  
   return { total, exactos, tendencia, errores };
 }
 
 // === ACTUALIZAR RANKING ===
 function actualizarRanking() {
   try {
-    const tabla = participantes.map(p => ({
-      ...p,
-      resumen: calcularResumen(p)
-    }));
-    
+    const tabla = participantes.map(p => ({ ...p, resumen: calcularResumen(p) }));
     tabla.sort((a, b) => {
       const diff = b.resumen.total - a.resumen.total;
       if (diff !== 0) return diff;
       return a.nombre.localeCompare(b.nombre);
     });
-    
     tablaOrdenada = tabla;
     
     const tbody = document.getElementById('rankingBody');
@@ -619,7 +684,6 @@ function actualizarRanking() {
     tbody.innerHTML = tabla.map((p, i) => {
       const pos = i + 1;
       const medalla = MEDALLAS_LISTA[i] || '';
-      
       return `
       <tr class="row-hover border-b border-[var(--border)] last:border-0" data-idx="${i}" onclick="abrirModal(${i})" tabindex="0">
         <td class="px-5 py-3 font-display text-[var(--text-dim)]">
@@ -633,7 +697,6 @@ function actualizarRanking() {
       </tr>`;
     }).join('');
     
-    // Actualizar contadores
     const totalPartidos = Object.keys(resultadosActuales).length;
     const jugados = Object.values(resultadosActuales).filter(m => m.jugado).length;
     document.getElementById('contadorParticipantes').textContent = `${tabla.length} / 18 confirmados`;
@@ -643,12 +706,10 @@ function actualizarRanking() {
     document.getElementById('progresoBar').style.width = pct + '%';
     document.getElementById('progresoLabel').textContent = pct + '%';
     
-    // Efecto de actualización
     const section = document.getElementById('rankingSection');
     section.classList.remove('updating');
     void section.offsetWidth;
     section.classList.add('updating');
-    
   } catch (e) {
     console.error('Error actualizando ranking:', e);
   }
@@ -665,11 +726,9 @@ function actualizarPartidos() {
       if (ids.length === 0) return '';
       
       const jugados = ids.filter(id => resultadosActuales[id].jugado).length;
-      
       const filas = ids.map(id => {
         const m = resultadosActuales[id];
         const score = m.jugado ? `${m.golesL} - ${m.golesV}` : 'vs';
-        
         return `
         <div class="flex items-center justify-between px-5 py-2.5 text-sm ${m.jugado ? '' : 'opacity-60'}">
           <span class="text-[var(--text-dim)] text-xs w-8 shrink-0">${id}</span>
@@ -691,7 +750,6 @@ function actualizarPartidos() {
         <div class="pb-2 border-t border-[var(--border)]">${filas}</div>
       </details>`;
     }).join('');
-    
   } catch (e) {
     console.error('Error actualizando partidos:', e);
   }
@@ -704,16 +762,11 @@ function actualizarResultados(nuevosResultados) {
   
   try {
     let huboCambios = false;
-    
     Object.keys(nuevosResultados).forEach(id => {
       if (resultadosActuales[id]) {
         const actual = resultadosActuales[id];
         const nuevo = nuevosResultados[id];
-        
-        if (actual.golesL !== nuevo.golesL || 
-            actual.golesV !== nuevo.golesV || 
-            actual.jugado !== nuevo.jugado) {
-          
+        if (actual.golesL !== nuevo.golesL || actual.golesV !== nuevo.golesV || actual.jugado !== nuevo.jugado) {
           resultadosActuales[id] = { ...nuevo };
           huboCambios = true;
           console.log(`📊 Resultado actualizado: ${id} → ${nuevo.golesL}-${nuevo.golesV}`);
@@ -725,30 +778,87 @@ function actualizarResultados(nuevosResultados) {
       puntajesCache.clear();
       actualizarRanking();
       actualizarPartidos();
-      
       const ahora = new Date();
       document.getElementById('fechaActualizacion').textContent = 
-        ahora.toLocaleDateString('es-AR', { 
-          day: '2-digit', 
-          month: 'short', 
-          year: 'numeric', 
-          hour: '2-digit', 
-          minute: '2-digit' 
-        });
-      
-      console.log('✅ Ranking actualizado con nuevos resultados');
+        ahora.toLocaleDateString('es-AR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
     }
-    
   } catch (e) {
-    console.error('Error en actualización de resultados:', e);
+    console.error('Error en actualización:', e);
   } finally {
     actualizando = false;
   }
 }
 
-// === FORZAR ACTUALIZACIÓN ===
+// === OBTENER RESULTADOS DESDE API ===
+async function obtenerResultadosDesdeAPI() {
+  try {
+    estadoAPI = 'checking';
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.timeout);
+    
+    const respuesta = await fetch(API_CONFIG.url, {
+      method: 'GET',
+      headers: { 'Accept': 'application/json' },
+      signal: controller.signal
+    });
+    
+    clearTimeout(timeoutId);
+    if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+    
+    const datos = await respuesta.json();
+    console.log('📡 Datos recibidos de API:', datos);
+    
+    // Procesar datos...
+    const actualizaciones = procesarDatosAPI(datos);
+    if (Object.keys(actualizaciones).length > 0) {
+      actualizarResultados(actualizaciones);
+      ultimaActualizacionAPI = new Date();
+      document.getElementById('ultimaActualizacionAPI').textContent = `Última API: ${ultimaActualizacionAPI.toLocaleTimeString()}`;
+      estadoAPI = 'online';
+    }
+  } catch (error) {
+    console.error('❌ Error API:', error);
+    estadoAPI = 'offline';
+  }
+}
+
+function procesarDatosAPI(datos) {
+  const actualizaciones = {};
+  try {
+    let partidos = datos.games || datos.matches || datos.data || [];
+    if (!Array.isArray(partidos)) partidos = [];
+    
+    partidos.forEach(partido => {
+      let id = partido.id || partido.matchId || partido.gameId;
+      let local = partido.homeTeam?.name || partido.home_team?.name || partido.team1;
+      let visitante = partido.awayTeam?.name || partido.away_team?.name || partido.team2;
+      let golesL = partido.score?.fullTime?.home ?? partido.homeScore ?? partido.goalsHome;
+      let golesV = partido.score?.fullTime?.away ?? partido.awayScore ?? partido.goalsAway;
+      let estado = partido.status || partido.matchStatus || '';
+      
+      if (id && local && visitante && golesL !== undefined && golesV !== undefined) {
+        const jugado = ['FINISHED','FINAL','FT','COMPLETED','PLAYED'].includes(estado) || 
+                       (estado === '' && golesL !== null && golesV !== null);
+        
+        if (jugado) {
+          const matchId = id.toString().toUpperCase();
+          for (const [key, value] of Object.entries(resultadosActuales)) {
+            if (value.local === local && value.visitante === visitante) {
+              actualizaciones[key] = { local, visitante, golesL, golesV, jugado: true };
+              break;
+            }
+          }
+        }
+      }
+    });
+  } catch (e) {
+    console.error('Error procesando API:', e);
+  }
+  return actualizaciones;
+}
+
 function forzarActualizacionCompleta() {
-  console.log('🔄 Forzando actualización desde API...');
+  console.log('🔄 Forzando actualización...');
   obtenerResultadosDesdeAPI();
 }
 
@@ -766,28 +876,18 @@ function abrirModal(idx) {
     
     body.innerHTML = GRUPOS_LISTA.map(g => {
       const ids = Object.keys(resultadosActuales).filter(id => id.startsWith(g));
-      
       const filas = ids.map(id => {
         const real = resultadosActuales[id];
         const pred = p.pronosticos[id];
         const pts = calcularPuntaje(id, pred, real);
-        
         const realTxt = real.jugado ? `${real.golesL}-${real.golesV}` : '-';
         const predTxt = pred ? `${pred.golesL}-${pred.golesV}` : '-';
-        
         let badge;
-        if (!real.jugado) {
-          badge = `<span class="badge-pending text-[11px] font-semibold rounded-md px-2 py-1">Pendiente</span>`;
-        } else if (pts === 2) {
-          badge = `<span class="badge-2 text-[11px] font-semibold rounded-md px-2 py-1">+2 Exacto</span>`;
-        } else if (pts === 1) {
-          badge = `<span class="badge-1 text-[11px] font-semibold rounded-md px-2 py-1">+1 Tendencia</span>`;
-        } else if (pts === 0) {
-          badge = `<span class="badge-0 text-[11px] font-semibold rounded-md px-2 py-1">0 Error</span>`;
-        } else {
-          badge = `<span class="badge-pending text-[11px] font-semibold rounded-md px-2 py-1">Sin dato</span>`;
-        }
-        
+        if (!real.jugado) badge = `<span class="badge-pending text-[11px] font-semibold rounded-md px-2 py-1">Pendiente</span>`;
+        else if (pts === 2) badge = `<span class="badge-2 text-[11px] font-semibold rounded-md px-2 py-1">+2 Exacto</span>`;
+        else if (pts === 1) badge = `<span class="badge-1 text-[11px] font-semibold rounded-md px-2 py-1">+1 Tendencia</span>`;
+        else if (pts === 0) badge = `<span class="badge-0 text-[11px] font-semibold rounded-md px-2 py-1">0 Error</span>`;
+        else badge = `<span class="badge-pending text-[11px] font-semibold rounded-md px-2 py-1">Sin dato</span>`;
         return `
         <div class="grid grid-cols-12 items-center gap-2 py-2 border-b border-[var(--border)] last:border-0 text-sm">
           <span class="col-span-1 text-[var(--text-dim)] text-xs">${id}</span>
@@ -797,7 +897,6 @@ function abrirModal(idx) {
           <span class="col-span-3 text-right">${badge}</span>
         </div>`;
       }).join('');
-      
       return `
       <div class="mb-4">
         <p class="text-[11px] uppercase tracking-[0.2em] text-[var(--green)] font-semibold mb-1 mt-2">Grupo ${g}</p>
@@ -811,7 +910,6 @@ function abrirModal(idx) {
     document.getElementById('modalBackdrop').classList.remove('hidden');
     document.getElementById('modalBackdrop').classList.add('flex');
     document.body.style.overflow = 'hidden';
-    
   } catch (e) {
     console.error('Error abriendo modal:', e);
   }
@@ -823,53 +921,28 @@ function cerrarModal() {
   document.body.style.overflow = '';
 }
 
-// Event listeners del modal
 document.getElementById('modalBackdrop').addEventListener('click', (e) => {
   if (e.target.id === 'modalBackdrop') cerrarModal();
 });
-
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') cerrarModal();
 });
 
 // === INICIALIZACIÓN ===
 function iniciarApp() {
-  console.log('🚀 Iniciando aplicación con API de worldcup26.ir');
-  
-  // Renderizado inicial
+  console.log('🚀 Iniciando aplicación con 72 partidos');
   actualizarRanking();
   actualizarPartidos();
   
-  // Fecha inicial
   const ahora = new Date();
   document.getElementById('fechaActualizacion').textContent = 
-    ahora.toLocaleDateString('es-AR', { 
-      day: '2-digit', 
-      month: 'short', 
-      year: 'numeric', 
-      hour: '2-digit', 
-      minute: '2-digit' 
-    });
+    ahora.toLocaleDateString('es-AR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
   
-  // Primera carga de API después de 2 segundos
-  setTimeout(() => {
-    console.log('📡 Conectando a API de resultados...');
-    obtenerResultadosDesdeAPI();
-  }, 2000);
-  
-  // Actualización automática cada 60 segundos
-  setInterval(() => {
-    console.log('🔄 Actualización automática programada');
-    obtenerResultadosDesdeAPI();
-  }, API_CONFIG.intervalo);
-  
-  console.log('✅ Aplicación iniciada correctamente');
-  console.log('📊 Los pronósticos son fijos, solo se actualizan los resultados');
-  console.log(`⏱️ API: ${API_CONFIG.url}`);
-  console.log(`🔄 Intervalo: ${API_CONFIG.intervalo / 1000} segundos`);
+  setTimeout(() => obtenerResultadosDesdeAPI(), 2000);
+  setInterval(obtenerResultadosDesdeAPI, API_CONFIG.intervalo);
+  console.log('✅ Aplicación iniciada con todos los partidos (A1-L6)');
 }
 
-// Ejecutar al cargar la página
 document.addEventListener('DOMContentLoaded', iniciarApp);
 </script>
 </body>
